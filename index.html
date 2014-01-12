@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<link href="css/estilos.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/javascript.js"></script>
+<script src="jquery-1.10.2.js"></script>
+<script src="jquery.nouislider.js"></script>
+<link href="jquery.nouislider.css" rel="stylesheet">
+<html>
+	<body class="body">
+		<audio id="som1" ontimeupdate="updateTime('som1', 'tempo1')" src="musicas/som1.mp3" type="audio/mp3"></audio>
+		<div id="main">
+			<script>
+				var i = 1, j = 1;
+			</script>
+			<div id="carregarFicheiros" onclick="addMusica();">
+				<input class="file_c" type="file" />
+			</div>
+			<div id="nome" onclick="createDiv();"><img src="imgs/banner.png" width="729px" height="80px" />
+			</div>
+			<div id="musicas">
+				<!--img id="teste" src="imgs/teste.png" draggable="true" width="100" height="40" ondragstart="drag(event)"-->
+			</div>
+			<div id="trackList">
+				<div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)">
+					<div class="containerUm">
+						<div class="titulo">
+							<div class="nome">
+								Musica 1.mp3
+							</div>
+							<div class="tempoC" id="tempo1">
+								0:00/0:00
+							</div>
+							<div class="loop" id="loop1" onclick="repeat('som'+i, 'loop'+i);"></div>
+						</div>
+						<div class="seekContainer">
+							<div class="wrapper">
+								<div class="seek" id="seek1">
+
+								</div>
+								<div class="trim" id="trim1"></div>
+							</div>
+							<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
+						</div>
+						<div class="trimContainer">
+							<!--div class="trim" id="trim2"></div-->
+							<div class="stop" onclick="stopmusica('som'+i, 'play'+i);"></div>
+						</div>
+					</div>
+					<div class="containerDois"></div>
+					<div class="containerTres">
+						<div class="mute" id="mute1" onclick="silencio('som'+i,'mute'+i);"></div>
+						<div class="volumeMenos"></div>
+						<div class="volume" id="volume1"></div>
+						<div class="volumeMais"></div>
+					</div>
+				</div>
+				<div class="audioContainer" id="audioC2" ondrop="drop('audioC2',event)" ondragover="allowDrop(event)"></div>
+				<div class="audioContainer" id="audioC3" ondrop="drop('audioC3',event)" ondragover="allowDrop(event)"></div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	$(function() {
+		var som = document.getElementById("som1");
+		var sliderSeek = $('#seek1');
+		var sliderTrim = $('#trim1');
+		var sliderVolume = $('#volume1');
+
+		sliderSeek.noUiSlider({
+			range : [0, 100],
+			start : 0,
+			handles : 1,
+			connect : false,
+			slide : function() {
+				som.pause();
+			}
+		}).change(function() {
+			som.play();
+			var time = som.duration * (sliderSeek.val() / 100);
+			som.currentTime = time;
+		});
+
+		som.addEventListener("timeupdate", function() {
+			var value = (100 / som.duration) * som.currentTime;
+			sliderSeek.val(value);
+		});
+
+		sliderTrim.noUiSlider({
+			range : [0, 100],
+			start : [50, 60],
+			handles : 2,
+			connect : true,
+			behaviour : 'tap-drag'
+		});
+
+		sliderVolume.noUiSlider({
+			range : [0, 100],
+			start : 50,
+			handles : 1,
+			connect : "lower",
+			behaviour : 'tap'
+		}).change(function() {
+			var volume = sliderVolume.val() / 100;
+			som.volume = volume;
+		});
+
+		som.addEventListener("volumechange", function() {
+			sliderVolume.val(som.volume * 100);
+		});
+	});
+
+	function allowDrop(ev) {
+		ev.preventDefault();
+	}
+
+	function drag(ev) {
+		ev.dataTransfer.setData("Text", ev.target.id);
+		//IMPORTANTE
+	}
+
+	function drop(id, ev) {
+		ev.preventDefault();
+		var track = document.getElementById(id);
+		var imagem = ev.dataTransfer.getData("Text");
+		var audio = document.getElementById('so' + imagem);
+		alert(imagem);
+
+		while (track.firstChild) {
+			track.removeChild(track.firstChild);
+		}
+		createDiv(id, 'so' + imagem);
+		//track.style.backgroundImage = "none";
+		//track.appendChild(audio);
+		//audio.setAttribute("controls", "true");
+	}
+
+	//http://jsfiddle.net/kXmpY/631/
+
+</script>
