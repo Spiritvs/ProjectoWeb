@@ -22,17 +22,15 @@ background-color: #090909; background-image:url(../imgs/bg.jpg); background-repe
 #carregarFicheiros, #nome{ height: 80px; float:left; margin-top:49px;}
 #carregarFicheiros, #musicas{width: 185px; margin-left:49px;}
 #trackList, #nome{width: 729px; margin-left: 12px;}
-#musicas, #trackList{min-height: 400px; margin-top: 12px; height:auto; padding-bottom: 20px}
+#musicas, #trackList{min-height: 844px; margin-top: 12px; height:auto;}
 .file_c{height:80px; width: 185px; opacity: 0;}
 #carregarFicheiros{	background: url(../imgs/btnLoad.png) no-repeat;	background-size: 100% 100%;}
 #nome{background:#000;}
-#musicas{background-color:#FFF; /*Laranja*/	float:left;}
+#musicas{background-color:#FFF; float:left; margin-bottom:12px;}
 #trackList{float:left;}
 #carregarFicheiros:hover{opacity:0.85;}
 
-#audioC1{background-image:url(../imgs/fundo.png);}
-#audioC2{background-image:url(../imgs/draghere.png);}
-#audioC3{background-image:url(../imgs/draghere.png);}
+.audioContainer{background-image:url(../imgs/draghere.png);}
 
 .audioContainer, .containerUm , .containerTres, .containerDois{ height: 95px;}
 .containerUm , .containerTres, .containerDois{ float:left;}

@@ -77,8 +77,11 @@ function updateTime(id, div){
 
 }
 
-function removeAudio(div){
+function removeAudio(div, id){
+	musica = document.getElementById(id);
 	parentDiv = div.parentNode.parentNode;
+	musica.pause();
+    musica.currentTime = 0;
 	while(parentDiv.firstChild) {
     parentDiv.removeChild(parentDiv.firstChild);
 	}
@@ -138,7 +141,7 @@ sliderSeek.noUiSlider({
 range: [0,100]
 ,start: 0
 ,handles:1
-,connect: "lower"
+,connect: false
 ,slide: function(){  som.pause();}
 }).change( function(){
 	som.play();
@@ -156,7 +159,7 @@ sliderTrim.noUiSlider({
 		,start: [50,60]
 		,handles:2
 		,connect: true
-		,behaviour: 'fixed-drag'
+		,behaviour: 'tap-drag'
 	});
 	//sliderTrim.noUiSlider.on("mousedown", function(){alert("draggin");});
 	
@@ -178,6 +181,7 @@ som.addEventListener("volumechange", function() {
 
 
 function createDiv(track, som){
+	musica = document.getElementById(som);
 	container = document.getElementById(track);
 	while(container.firstChild) {
     container.removeChild(container.firstChild);
@@ -189,6 +193,7 @@ function createDiv(track, som){
 	tempoC = document.createElement('div');
 	loop = document.createElement('div');
 	seekContainer = document.createElement('div');
+	wrapper = document.createElement('div');
 	seek = document.createElement('div');
 	play = document.createElement('div');
 	trimContainer = document.createElement('div');
@@ -197,6 +202,9 @@ function createDiv(track, som){
 	containerDois = document.createElement('div');
 	containerTres = document.createElement('div');
 	mute = document.createElement('div');
+	boxContainer = document.createElement('div');
+	checkbox = document.createElement('input');
+	remove = document.createElement('div');
 	volumeMenos = document.createElement('div');
 	volumeMais = document.createElement('div');
 	volume = document.createElement('div');
@@ -212,15 +220,15 @@ function createDiv(track, som){
 	loop.setAttribute("id", "loop"+i);
 	loop.setAttribute("onClick", "repeat('som"+i+"','loop"+i+"');");
 	seekContainer.setAttribute("class", "seekContainer");
+	wrapper.setAttribute("class", "wrapper");
 	seek.setAttribute("class", "seek");
 	seek.setAttribute("id", "seek"+i);
+	trim.setAttribute("class", "trim");
+	trim.setAttribute("id", "trim"+i);
 	play.setAttribute("class", "play");
 	play.setAttribute("id", "play"+i);
 	play.setAttribute("onClick", "playPause('som"+i+"', 'play"+i+"');");
-	//	play.setAttribute("onClick", "playPause('"+som+"', 'play"+i+"');");
 	trimContainer.setAttribute("class", "trimContainer");
-	trim.setAttribute("class", "trim");
-	trim.setAttribute("id", "trim"+i);
 	stop.setAttribute("class", "stop");
 	stop.setAttribute("onClick", "stopmusica('som"+i+"', 'play"+i+"');");
 	containerDois.setAttribute("class", "containerDois");
@@ -228,6 +236,12 @@ function createDiv(track, som){
 	mute.setAttribute("class", "mute");
 	mute.setAttribute("id", "mute"+i);
 	mute.setAttribute("onClick", "silencio('som"+i+"','mute"+i+"');");
+	boxContainer.setAttribute("class","boxContainer");
+	checkbox.setAttribute("type","checkbox");
+	checkbox.setAttribute("class","checkbox");
+	checkbox.setAttribute("id","checkbox"+i);
+	remove.setAttribute("class","remove");
+	remove.setAttribute("onClick","removeAudio(this,'som"+i+"');");
 	volumeMenos.setAttribute("class", "volumeMenos");
 	volumeMais.setAttribute("class", "volumeMais");
 	volume.setAttribute("class", "volume");
@@ -236,14 +250,18 @@ function createDiv(track, som){
 	titulo.appendChild(nome);
 	titulo.appendChild(tempoC);
 	titulo.appendChild(loop);
-	seekContainer.appendChild(seek);
+	wrapper.appendChild(seek);
+	wrapper.appendChild(trim);
+	seekContainer.appendChild(wrapper);
 	seekContainer.appendChild(play);
-	trimContainer.appendChild(trim);
 	trimContainer.appendChild(stop);
 	containerUm.appendChild(titulo);
 	containerUm.appendChild(seekContainer);
 	containerUm.appendChild(trimContainer);
+	boxContainer.appendChild(checkbox);
 	containerTres.appendChild(mute);
+	containerTres.appendChild(boxContainer);
+	containerTres.appendChild(remove);
 	containerTres.appendChild(volumeMenos);
 	containerTres.appendChild(volume);
 	containerTres.appendChild(volumeMais);
