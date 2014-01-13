@@ -77,6 +77,14 @@ function updateTime(id, div){
 
 }
 
+function removeAudio(div){
+	parentDiv = div.parentNode.parentNode;
+	while(parentDiv.firstChild) {
+    parentDiv.removeChild(parentDiv.firstChild);
+	}
+	parentDiv.setAttribute("style","background-image:url(imgs/draghere.png);");
+}
+
 
 function addMusica(){
 // Criar uma referencia á div com o id 'musicas'
