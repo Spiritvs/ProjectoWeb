@@ -5,6 +5,7 @@
 <script src="jquery.nouislider.js"></script>
 <link href="jquery.nouislider.css" rel="stylesheet">
 <html>
+	<title>Mix Dj Titanium</title>
 	<body class="body">
 		<audio id="som1" ontimeupdate="updateTime('som1', 'tempo1')" src="musicas/som1.mp3" type="audio/mp3"></audio>
 		<div id="main">
@@ -48,6 +49,8 @@
 					<div class="containerDois"></div>
 					<div class="containerTres">
 						<div class="mute" id="mute1" onclick="silencio('som'+i,'mute'+i);"></div>
+						<div class="boxContainer"><input type="checkbox" class="checkbox"/></div>
+						<div class="remove"></div>
 						<div class="volumeMenos"></div>
 						<div class="volume" id="volume1"></div>
 						<div class="volumeMais"></div>
