@@ -210,7 +210,7 @@
 .seek .noUi-handle {
 	border: 0px solid #000;
 	border-radius: 0px;
-	background:url(imgs/sliderT.png);
+	background:url(../imgs/sliderT.png);
 	cursor: default;
 	box-shadow: inset 0 0 0px #000,
 				inset 0 0px 0px #000,
@@ -219,7 +219,7 @@
 .trim .noUi-handle {
 	border: 0px solid #000;
 	border-radius: 0px;
-	background:url(imgs/slider.png);
+	background:url(../imgs/slider.png);
 	background-size:contain;
 	cursor: default;
 	box-shadow: inset 0 0 0px #000,
@@ -230,7 +230,7 @@
 .volume .noUi-handle {
 	border: 0px solid #000;
 	border-radius: 0px;
-	background:url(imgs/slider.png);
+	background:url(../imgs/slider.png);
 	cursor: default;
 	box-shadow: inset 0 0 0px #000,
 				inset 0 0px 0px #000,
