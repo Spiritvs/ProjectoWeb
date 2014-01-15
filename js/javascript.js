@@ -150,7 +150,7 @@ som.addEventListener("timeupdate", function() {
 
 sliderTrim.noUiSlider({
 		range: [0,100]
-		,start: [50,60]
+		,start: [0,100]
 		,handles:2
 		,connect: true
 		,behaviour: 'tap-drag'

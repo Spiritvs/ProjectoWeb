@@ -73,9 +73,16 @@
 	$(document).ready(function() {
 		$("#carregarFicheiros").uploadFile({
 			url : "add_file.php",
+			dataType : "text",
 			allowedTypes:"mp3,wav,ogg",
 			fileName : "myfile",
 			onSuccess : function(files, data, xhr) {
+				debugger;
+				if (data.status) {
+					alert(":) "+ data.data);
+				} else {
+					alert(":( "+ data.data);
+				}
 				addMusica(files);
 			},
 		});

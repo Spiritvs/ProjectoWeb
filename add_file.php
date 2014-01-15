@@ -1,4 +1,17 @@
-    <?php
+<?php
+    class response {
+    	public $status;
+		public $data;
+		
+		public function __construct() {
+			$this->status = false;
+			$this->data = "classe nao instanciada";
+		}
+    }
+	
+	header('Content-type: application/json');
+	$resp = new response();
+	
     // Check if a file has been uploaded
     if(isset($_FILES['myfile'])) {
         // Make sure the file was sent without errors
@@ -26,30 +39,37 @@
      
             // Execute the query
             $result = $dbLink->query($query);
+			
 			move_uploaded_file($_FILES["myfile"]["tmp_name"],$destination.$name);
             // Check if it was successfull
             if($result) {
-                echo 'Success! Your file was successfully added!';
-
+				$id = $dbLink->insert_id;
+				//echo('last id = '.$id);
+                //echo 'Success! Your file was successfully added!';
+                $resp->status=true;
+				$resp->data = $id;
             }
             else {
-                echo 'Error! Failed to insert the file'
+            	$resp->status=false;
+				$resp->data = 'yyy Error! Failed to insert the file'
                    . "<pre>{$dbLink->error}</pre>";
             }
         }
         else {
-            echo 'An error accured while the file was being uploaded. '
-               . 'Error code: '. intval($_FILES['myfile']['error']);
+            //echo 'xxx An error accured while the file was being uploaded. '
+            //   . 'Error code: '. intval($_FILES['myfile']['error']);
         }
      
         // Close the mysql connection
         $dbLink->close();
     }
     else {
-        echo 'Error! A file was not sent!';
+        //echo 'Error! A file was not sent!';
     }
      
     // Echo a link back to the main page
-    echo '<p>Click <a href="index.html">here</a> to go back</p>';
+    //echo '<p>Click <a href="index.html">here</a> to go back</p>';
+    
+    echo json_encode($resp);
     ?>
     
