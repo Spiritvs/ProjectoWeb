@@ -1,0 +1,31 @@
+ CREATE TABLE `file` (
+    `id`        Int Unsigned Not Null Auto_Increment,
+    `name`      VarChar(255) Not Null Default 'Untitled.txt',
+    `mime`      VarChar(50) Not Null Default 'text/plain',
+    `size`      BigInt Unsigned Not Null Default 0,
+    `data`      MediumBlob Not Null,
+    `created`   DateTime Not Null,
+    PRIMARY KEY (`id`)
+)
+
+Ficheiro: my.ini
+max_allowed_packet = 100M
+
+
+
+php.ini settings
+
+max_file_uploads = 2000
+upload_max_filesize = 40000M
+max_input_vars = 10000
+post_max_size = 40000M
+
+
+
+httpd.conf settings
+
+php_value suhosin.post.max_vars 10000
+php_value suhosin.request.max_vars 10000
+php_value suhosin.get.max_array_depth 2000
+php_value suhosin.get.max_vars 10000
+php_value suhosin.upload.max_uploads 2000
