@@ -4,7 +4,7 @@
         // Make sure the file was sent without errors
         if($_FILES['myfile']['error'] == 0) {
             // Connect to the database
-            $dbLink = new mysqli('127.0.0.1', 'root', 'mixdjtitanium', 'mash');
+            $dbLink = new mysqli('127.0.0.1', 'root', 'root', 'mash');
             if(mysqli_connect_errno()) {
                 die("MySQL connection failed: ". mysqli_connect_error());
             }
