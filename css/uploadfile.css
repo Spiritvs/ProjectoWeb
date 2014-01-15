@@ -71,7 +71,7 @@ src:url(../font/font.TTF);
 	padding: 3px 14px;
 	text-decoration: none;
 	cursor: pointer;
-	text-shadow: 0 1px 0 #5b8a3c;
+	text-shadow: 0 0px 0 #5b8a3c;
 	vertical-align: top;
 	margin-right: 5px;
 }
@@ -86,7 +86,7 @@ opacity:0.85;
 }
 
 .ajax-upload-dragdrop {
-	border: none;
+	border: 1px;
 	width: 185px;
 	height: 80px; 
 }

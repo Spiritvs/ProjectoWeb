@@ -11,6 +11,7 @@
 	<title>Mix Dj Titanium</title>
 	<body class="body">
 		<!--audio id="som1" ontimeupdate="updateTime('som1', 'tempo1')" src="musicas/som1.mp3" type="audio/mp3"></audio-->
+        <div id="logo"></div>
 		<div id="main">
 			<script>
 				var j = 1;
@@ -73,17 +74,17 @@
 	$(document).ready(function() {
 		$("#carregarFicheiros").uploadFile({
 			url : "add_file.php",
-			dataType : "text",
+			dataType :"text",
 			allowedTypes:"mp3,wav,ogg",
 			fileName : "myfile",
 			onSuccess : function(files, data, xhr) {
-				debugger;
-				if (data.status) {
+				alert(data.status);
+				if (data.status == true) {
 					alert(":) "+ data.data);
+					addMusica(files);
 				} else {
 					alert(":( "+ data.data);
 				}
-				addMusica(files);
 			},
 		});
 	});

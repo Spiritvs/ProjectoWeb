@@ -159,7 +159,7 @@ sliderTrim.noUiSlider({
 	
 sliderVolume.noUiSlider({
 		range: [0,100]
-		,start: 50
+		,start: 100
 		,handles:1
 		,connect: "lower"
 		,behaviour: 'tap'

@@ -8,10 +8,12 @@ CREATE TABLE `file` (
     `name`      VarChar(255) Not Null Default 'Untitled.txt',
     `mime`      VarChar(50) Not Null Default 'text/plain',
     `size`      BigInt Unsigned Not Null Default 0,
-    `data`      MediumBlob Not Null,
     `created`   DateTime Not Null,
     PRIMARY KEY (`id`)
 )
+
+    `data`      MediumBlob Not Null,
+
 
 Ficheiro: my.ini
 max_allowed_packet = 100M

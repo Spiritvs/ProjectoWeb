@@ -5,7 +5,15 @@ src:url(../font/font.TTF);
 }
 
 .body{
-background-color: #090909; background-image:url(../imgs/bg.jpg); background-repeat:no-repeat; background-position:top center;
+background-color: #000000; /*background-image:url(../imgs/bg.jpg); */background-repeat:no-repeat; background-position:top center;
+}
+#logo{
+	width:800px;
+ 	height:97px;
+	background:url(../imgs/logo.png);
+	margin: 0px auto;
+	margin-top: 150px;
+	position: relative;
 }
 
 #main{
@@ -15,16 +23,16 @@ background-color: #090909; background-image:url(../imgs/bg.jpg); background-repe
 	background-repeat:no-repeat;
 	background-color:#000;
 	margin: 0px auto;
-	margin-top: 150px;
+	margin-top: 10px;
 	position: relative;
 }
 #esquerda {margin-left:49px; margin-top:49px; width: 185px; height: 5000px; float:left;}
 #direita {margin-right:49px; margin-top:49px; width: 729px; height: 5000px; float: right;}
 
-#musicas{width: 185px; background-color:#FFF; margin-bottom:12px; min-height: 844px; margin-top: 12px; height:auto;}
+#musicas{width: 185px; height:844px; background-color:#FFF; margin-bottom:12px; margin-top: 12px;}
 #banner{ height: 80px; width: 729px;}
 #trackList{min-height: 844px; width: 729px; margin-top: 12px; height:auto;}
-#carregarFicheiros{width: 185px; height: 80px; background: url(../imgs/btnLoad.png) no-repeat;	background-size: 100% 100%;}
+#carregarFicheiros{width: 185px; height: 80px; background: url(../imgs/btnLoad.png) no-repeat;	background-size: 100% 100%; border: none;}
 
 #carregarFicheiros:hover{opacity:0.85;}
 
