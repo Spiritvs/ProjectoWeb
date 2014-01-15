@@ -16,6 +16,7 @@
 //    teste.play();
 //}
 
+
 var musica;
 var volumeAux = 0;
 //Toca e pausa a musica, recebe o id da musica como parametro e o id da div para mudar o icon.
@@ -89,45 +90,38 @@ function removeAudio(div, id){
 }
 
 
-function addMusica(){
+function addMusica(nome){
 // Criar uma referencia á div com o id 'musicas'
 var divMusicas = document.getElementById('musicas'),
 // Cria um novo elemento do tipo 'div'
 	div = document.createElement("div"),
 // Cria um novo elemento do tipo 'img'
     img = document.createElement('img'),
-// Cria um novo elemento do tipo 'i'
-    ital = document.createElement('i'),
 // Cria o texto
-    text = document.createTextNode('Musica '+j);
+    text = document.createTextNode(nome);
 //Define os atributos da nova 'div'
-div.setAttribute("style", "width:185px; height:auto; margin-top:15px; text-align: center;");
+div.setAttribute("style", "width:165px; height:auto; margin-top:15px; margin-left:10px; margin-right:10px; font-family: font; font-size:20px; text-align: center; overflow:hidden;");
 //Define os atributos da nova 'img'
 img.setAttribute("dragable", "true");
 img.setAttribute("ondragstart", "drag(event)");
-img.setAttribute("id", "m"+j);
+img.setAttribute("id", +j);
 img.setAttribute("src", "imgs/file.png");
 img.setAttribute("height", "50");
 img.setAttribute("width", "50");
-img.setAttribute("style", "margin-left:68px;  display: block;");
-//Define os atributos do novo 'i'
-ital.setAttribute("style", "font-family: font; font-size:20px;");
-// Faz o append (junta) o novo texto criado ao novo i
-ital.appendChild(text);
+img.setAttribute("style", "margin-left:58px;  display: block;");
 // Depois junta a imagem e o texto á nova div
 div.appendChild(img);
-div.appendChild(ital);
+div.appendChild(text);
 //Por fim insere a nova div dentro da div já existente chamada musicas
 divMusicas.appendChild(div);
 
 var audio = document.createElement('audio');
 audio.setAttribute("id", "som"+j);
-audio.setAttribute("src", "musicas/som"+j+".mp3");
-audio.setAttribute("type", "audio/mp3");
+audio.setAttribute("src", "uploads/"+nome+"");
+//audio.setAttribute("type", "audio/mp3");
 audio.setAttribute("onTimeUpdate", "updateTime('som"+j+"','tempo"+j+"')");
  
 img.appendChild(audio);
-//document.getElementById('audioC1').appendChild(audio);
 j++;
 }
 
@@ -138,19 +132,19 @@ var sliderTrim = $('#'+trim);
 var sliderVolume = $('#'+volume);
 
 sliderSeek.noUiSlider({
-range: [0,100]
+range: [0,1000]
 ,start: 0
 ,handles:1
 ,connect: false
 ,slide: function(){  som.pause();}
 }).change( function(){
 	som.play();
-	var time = som.duration * (sliderSeek.val() / 100);
+	var time = som.duration * (sliderSeek.val() / 1000);
 	som.currentTime = time;
 });
 
 som.addEventListener("timeupdate", function() {
-  var value = (100 / som.duration) * som.currentTime;
+  var value = (1000 / som.duration) * som.currentTime;
   sliderSeek.val(value);
 });
 
@@ -180,8 +174,7 @@ som.addEventListener("volumechange", function() {
 }
 
 
-function createDiv(track, som){
-	musica = document.getElementById(som);
+function createDiv(track, texto, i){
 	container = document.getElementById(track);
 	while(container.firstChild) {
     container.removeChild(container.firstChild);
@@ -212,7 +205,7 @@ function createDiv(track, som){
 	containerUm.setAttribute("class", "containerUm");
 	titulo.setAttribute("class", "titulo");
 	nome.setAttribute("class", "nome");
-	nome.innerHTML = "Musica " +i+ ".mp3";
+	nome.innerHTML = texto;
 	tempoC.setAttribute("class", "tempoC");
 	tempoC.setAttribute("id", "tempo"+i);
 	tempoC.innerHTML = "0:00/0:00";
@@ -269,5 +262,4 @@ function createDiv(track, som){
 	container.appendChild(containerDois);
 	container.appendChild(containerTres);
 	createSlides('som'+i,'seek'+i,'trim'+i,'volume'+i);
-	i++;
 }

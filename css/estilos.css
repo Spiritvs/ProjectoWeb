@@ -10,7 +10,7 @@ background-color: #090909; background-image:url(../imgs/bg.jpg); background-repe
 
 #main{
 	width: 1024px;
-	height: 2028px;
+	height: 7028px;
 	background:url(../imgs/background.png);
 	background-repeat:no-repeat;
 	background-color:#000;
@@ -18,20 +18,17 @@ background-color: #090909; background-image:url(../imgs/bg.jpg); background-repe
 	margin-top: 150px;
 	position: relative;
 }
+#esquerda {margin-left:49px; margin-top:49px; width: 185px; height: 5000px; float:left;}
+#direita {margin-right:49px; margin-top:49px; width: 729px; height: 5000px; float: right;}
 
-#carregarFicheiros, #nome{ height: 80px; float:left; margin-top:49px;}
-#carregarFicheiros, #musicas{width: 185px; margin-left:49px;}
-#trackList, #nome{width: 729px; margin-left: 12px;}
-#musicas, #trackList{min-height: 844px; margin-top: 12px; height:auto;}
-.file_c{height:80px; width: 185px; opacity: 0;}
-#carregarFicheiros{	background: url(../imgs/btnLoad.png) no-repeat;	background-size: 100% 100%;}
-#nome{background:#000;}
-#musicas{background-color:#FFF; float:left; margin-bottom:12px;}
-#trackList{float:left;}
+#musicas{width: 185px; background-color:#FFF; margin-bottom:12px; min-height: 844px; margin-top: 12px; height:auto;}
+#banner{ height: 80px; width: 729px;}
+#trackList{min-height: 844px; width: 729px; margin-top: 12px; height:auto;}
+#carregarFicheiros{width: 185px; height: 80px; background: url(../imgs/btnLoad.png) no-repeat;	background-size: 100% 100%;}
+
 #carregarFicheiros:hover{opacity:0.85;}
 
 .audioContainer{background-image:url(../imgs/draghere.png);}
-
 .audioContainer, .containerUm , .containerTres, .containerDois{ height: 95px;}
 .containerUm , .containerTres, .containerDois{ float:left;}
 .containerTres{width: 175px;}
@@ -41,8 +38,8 @@ background-color: #090909; background-image:url(../imgs/bg.jpg); background-repe
 .titulo{height: 35px;}
 .seekContainer, .trimContainer{height: 30px;}
 .seek, .trim {height: 10px;}
-.nome, .tempoC{margin-top:5px; height:30px; float:left; font-family: font; font-size:24px;}
-.nome{margin-left: 12px; width: 310px; }
+.nome, .tempoC{margin-top:10px; height:22px; float:left; font-family: font; font-size:20px;}
+.nome{margin-left: 12px; width: 310px; overflow:hidden; }
 .tempoC{width: 100px; margin-right:12px; }
 .mute{ height:45px; width: 80px; float:left; background-image:url(../imgs/muteOff.png); background-size: contain; background-position:center; background-repeat:no-repeat;}
 .boxContainer{float:left; width:20px; height: 45px; margin-left:10px; margin-right:10px;}
