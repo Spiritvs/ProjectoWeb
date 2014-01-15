@@ -52,10 +52,4 @@
     // Echo a link back to the main page
     echo '<p>Click <a href="index.html">here</a> to go back</p>';
     ?>
-     
-     <script>
-	 teste();
-	 </script>
-
-
- 
+    

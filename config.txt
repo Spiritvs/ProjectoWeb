@@ -3,7 +3,7 @@ pw: root
 
 chmod -R 777 directoria
 
- CREATE TABLE `file` (
+CREATE TABLE `file` (
     `id`        Int Unsigned Not Null Auto_Increment,
     `name`      VarChar(255) Not Null Default 'Untitled.txt',
     `mime`      VarChar(50) Not Null Default 'text/plain',
