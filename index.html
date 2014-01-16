@@ -1,120 +1,99 @@
 <!DOCTYPE html>
-<link href="css/estilos.css" rel="stylesheet" type="text/css" />
-<link href="css/jquery.nouislider.css" rel="stylesheet" type="text/css" >
-<link href="css/uploadfile.css" rel="stylesheet" type="text/css" >
-<script type="text/javascript" src="js/javascript.js"></script>
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/jquery.nouislider.js"></script>
-<script src="js/jquery.uploadfile.min.js"></script>
-
 <html>
 	<title>Mix Dj Titanium</title>
+	<head>
+		<link href="css/estilos.css" rel="stylesheet" type="text/css" />
+		<link href="css/jquery.nouislider.css" rel="stylesheet" type="text/css" >
+		<link href="css/uploadfile.css" rel="stylesheet" type="text/css" >
+		<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/jquery.nouislider.js"></script>
+		<script type="text/javascript" src="js/jquery.uploadfile.min.js"></script>
+		<script type="text/javascript" src="js/javascript.js"></script>
+	</head>
 	<body class="body">
 		<!--audio id="som1" ontimeupdate="updateTime('som1', 'tempo1')" src="musicas/som1.mp3" type="audio/mp3"></audio-->
-        <div id="logo"></div>
+		<div id="logo"></div>
 		<div id="main">
-			<script>
-				var j = 1;
-			</script>
-            <div id="esquerda">
-			<div id="carregarFicheiros"></div>
-            <div id="musicas"></div>
-            </div>
-            <div id="direita">
-			<div id="banner"><img src="imgs/banner.png" width="729px" height="80px" /></div>
-			<div id="trackList">
-				<!--div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)">
-				<div class="containerUm">
-				<div class="titulo">
-				<div class="nome">
-				Musica 1.mp3
-				</div>
-				<div class="tempoC" id="tempo1">
-				0:00/0:00
-				</div>
-				<div class="loop" id="loop1" onclick="repeat('som'+i, 'loop'+i);"></div>
-				</div>
-				<div class="seekContainer">
-				<div class="wrapper">
-				<div class="seek" id="seek1"></div>
-				<div class="trim" id="trim1"></div>
-				</div>
-				<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
-				</div>
-				<div class="trimContainer">
-				<div class="trim" id="trim2"></div>
-				<div class="stop" onclick="stopmusica('som'+i, 'play'+i);"></div>
-				</div>
-				</div>
-				<div class="containerDois"></div>
-				<div class="containerTres">
-				<div class="mute" id="mute1" onclick="silencio('som'+i,'mute'+i);"></div>
-				<div class="checkbox">
+			<div id="esquerda">
+				<div id="carregarFicheiros"></div>
+				<div id="musicas"></div>
+			</div>
+			<div id="direita">
+				<div id="master"></div>
+				<div id="masterL"></div>
+				<div id="trackList">
+					<!--div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)">
+					<div class="containerUm">
+					<div class="titulo">
+					<div class="nome">
+					Musica 1.mp3
+					</div>
+					<div class="tempoC" id="tempo1">
+					0:00/0:00
+					</div>
+					<div class="loop" id="loop1" onclick="repeat('som'+i, 'loop'+i);"></div>
+					</div>
+					<div class="seekContainer">
+					<div class="wrapper">
+					<div class="seek" id="seek1"></div>
+					<div class="trim" id="trim1"></div>
+					</div>
+					<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
+					</div>
+					<div class="trimContainer">
+					<div class="trim" id="trim2"></div>
+					<div class="stop" onclick="stopmusica('som'+i, 'play'+i);"></div>
+					</div>
+					</div>
+					<div class="containerDois"></div>
+					<div class="containerTres">
+					<div class="mute" id="mute1" onclick="silencio('som'+i,'mute'+i);"></div>
+					<div class="checkbox">
 					<input type="checkbox" id="checkbox1">
 					<label for="checkbox1"></label>
+					</div>
+					<div class="remove" onclick="removeAudio(this,'som'+i);"></div>
+					<div class="volumeMenos"></div>
+					<div class="volume" id="volume1"></div>
+					<div class="volumeMais"></div>
+					</div>
+					</div-->
+					<div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)"></div>
+					<div class="audioContainer" id="audioC2" ondrop="drop('audioC2',event)" ondragover="allowDrop(event)"></div>
+					<div class="audioContainer" id="audioC3" ondrop="drop('audioC3',event)" ondragover="allowDrop(event)"></div>
+					<div class="audioContainer" id="audioC4" ondrop="drop('audioC4',event)" ondragover="allowDrop(event)"></div>
+					<div class="audioContainer" id="audioC5" ondrop="drop('audioC5',event)" ondragover="allowDrop(event)"></div>
+					<div class="audioContainer" id="audioC6" ondrop="drop('audioC6',event)" ondragover="allowDrop(event)"></div>
+					<div class="audioContainer" id="audioC7" ondrop="drop('audioC7',event)" ondragover="allowDrop(event)"></div>
+					<div class="audioContainer" id="audioC8" ondrop="drop('audioC8',event)" ondragover="allowDrop(event)"></div>
 				</div>
-				<div class="remove" onclick="removeAudio(this,'som'+i);"></div>
-				<div class="volumeMenos"></div>
-				<div class="volume" id="volume1"></div>
-				<div class="volumeMais"></div>
-				</div>
-				</div-->
-				<div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)"></div>
-				<div class="audioContainer" id="audioC2" ondrop="drop('audioC2',event)" ondragover="allowDrop(event)"></div>
-				<div class="audioContainer" id="audioC3" ondrop="drop('audioC3',event)" ondragover="allowDrop(event)"></div>
-				<div class="audioContainer" id="audioC4" ondrop="drop('audioC4',event)" ondragover="allowDrop(event)"></div>
-				<div class="audioContainer" id="audioC5" ondrop="drop('audioC5',event)" ondragover="allowDrop(event)"></div>
-				<div class="audioContainer" id="audioC6" ondrop="drop('audioC6',event)" ondragover="allowDrop(event)"></div>
-				<div class="audioContainer" id="audioC7" ondrop="drop('audioC7',event)" ondragover="allowDrop(event)"></div>
-				<div class="audioContainer" id="audioC8" ondrop="drop('audioC8',event)" ondragover="allowDrop(event)"></div>
 			</div>
 		</div>
-       </div>
 	</body>
 </html>
 
 <script>
-	$(document).ready(function() {
-		$("#carregarFicheiros").uploadFile({
-			url : "add_file.php",
-			dataType :"text",
-			allowedTypes:"mp3,wav,ogg",
-			fileName : "myfile",
-			onSuccess : function(files, data, xhr) {
-				alert(data.status);
-				if (data.status == true) {
-					alert(":) "+ data.data);
-					addMusica(files);
-				} else {
-					alert(":( "+ data.data);
-				}
-			},
-		});
-	});
+	//	$(function() {
+	//	});
 
-	$(function() {
-	});
-
-	function allowDrop(ev) {
-		ev.preventDefault();
-	}
-
-	function drag(ev) {
-		ev.dataTransfer.setData("Text", ev.target.id);
-		//IMPORTANTE
-	}
-
-	function drop(id, ev) {
-		
-		ev.preventDefault();
-		var track = document.getElementById(id);
-		var imagem = ev.dataTransfer.getData("Text");
-		var div = document.getElementById(imagem);
-		var parentDiv = div.parentNode;
-		var texto = parentDiv.textContent;
-		while (track.firstChild) {
-			track.removeChild(track.firstChild);
+	function getCheckedBoxes(nome) {
+		var checkboxes = document.getElementsByName(nome);
+		var checkboxesChecked = [];
+		// loop over them all
+		for (var i = 0; i < checkboxes.length; i++) {
+			if (checkboxes[i].checked) {
+				var id = checkboxes[i].id;
+				var som = id.replace("checkbox", "som");
+				var div = id.replace("checkbox", "play");
+				playPause(som, div);
+			}
+			// And stick the checked ones onto an array...
+			//if (checkboxes[i].checked) {
+			// checkboxesChecked.push(checkboxes[i]);
+			// }
 		}
-		createDiv(id, texto, imagem);
+		// Return the array if it is non-empty, or null
+		// return checkboxesChecked.length > 0 ? checkboxesChecked : null;
 	}
+
 </script>

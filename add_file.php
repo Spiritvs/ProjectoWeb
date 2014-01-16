@@ -45,7 +45,8 @@ if (isset($_FILES['myfile'])) {
 			$id = $dbLink -> insert_id;
 			$resp -> status = true;
 			$resp -> data = $id;
-		} else {
+		} 
+		else {
 			$resp -> status = false;
 			$resp -> data = 'Error! Failed to insert the file' . '<pre>{$dbLink->error}</pre>';
 		}

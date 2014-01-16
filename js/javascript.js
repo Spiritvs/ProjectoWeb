@@ -18,6 +18,49 @@
 
 var musica;
 var volumeAux = 0;
+
+$(document).ready(function() {
+	$("#carregarFicheiros").uploadFile({
+		url : "add_file.php",
+		dataType : "text",
+		allowedTypes : "mp3,wav,ogg",
+		fileName : "myfile",
+		//showStatusAfterSuccess : false,
+		onSuccess : function(files, data, xhr) {
+			alert(data.status);
+			if (data.status == true) {
+				alert(":) "+ data.data);
+				addMusica(files, data.data);
+			} else {
+				alert(":( " + data.data);
+			}
+		},
+	});
+});
+
+function allowDrop(ev) {
+	ev.preventDefault();
+}
+
+function drag(ev) {
+	ev.dataTransfer.setData("Text", ev.target.id);
+	//IMPORTANTE Define o que vai transferir, neste caso é o id do target (audio container)
+}
+
+function drop(id, ev) {
+
+	ev.preventDefault();
+	var track = document.getElementById(id);
+	var imagem = ev.dataTransfer.getData("Text");
+	var div = document.getElementById(imagem);
+	var parentDiv = div.parentNode;
+	var texto = parentDiv.textContent;
+	while (track.firstChild) {
+		track.removeChild(track.firstChild);
+	}
+	createDiv(id, texto, imagem);
+}
+
 //Toca e pausa a musica, recebe o id da musica como parametro e o id da div para mudar o icon.
 function playPause(id, div) {
 	musica = document.getElementById(id);
@@ -31,6 +74,7 @@ function playPause(id, div) {
 	}
 }
 
+//Liga e desliga o loop, troca o icon de acordo com a selecção.
 function repeat(id, div) {
 	musica = document.getElementById(id);
 	var icon = document.getElementById(div);
@@ -52,6 +96,8 @@ function stopmusica(id, div) {
 	icon.setAttribute("style", "background-image:url(imgs/play.png);");
 }
 
+//Liga e desliga o mute. Guarda o volume anterior num auxiliar de forma a voltar ao som quando se faz unmute
+//Tb altera o icon
 function silencio(id, div) {
 	musica = document.getElementById(id);
 	var icon = document.getElementById(div);
@@ -65,16 +111,17 @@ function silencio(id, div) {
 	}
 }
 
-//Update do tempo para saber em que posiçao está na musica tb faz o update do seeker.
+//Update do tempo para saber em que posiçao está na musica.
 function updateTime(id, div) {
 	musica = document.getElementById(id);
 	var currentSeconds = (Math.floor(musica.currentTime % 60) < 10 ? '0' : '') + Math.floor(musica.currentTime % 60);
 	var currentMinutes = Math.floor(musica.currentTime / 60);
-	//Sets the current song location compared to the song duration.
+	//Muda o innerHTML de acordo com o tempo novo
 	document.getElementById(div).innerHTML = currentMinutes + ":" + currentSeconds + ' / ' + Math.floor(musica.duration / 60) + ":" + (Math.floor(musica.duration % 60) < 10 ? '0' : '') + Math.floor(musica.duration % 60);
 
 }
-
+//Remove uma pista, acedendo ao parent Nod mais alto remove todos os childrens do mesmo até nada restar
+//No final insere uma nova imagem de fundo na div
 function removeAudio(div, id) {
 	musica = document.getElementById(id);
 	parentDiv = div.parentNode.parentNode;
@@ -86,21 +133,22 @@ function removeAudio(div, id) {
 	parentDiv.setAttribute("style", "background-image:url(imgs/draghere.png);");
 }
 
-function addMusica(nome) {
-	// Criar uma referencia á div com o id 'musicas'
+//Adiciona a musica á lista depois de ter ido feito o upload
+function addMusica(nome, id) {
+	// Cria uma referencia á div com o id 'musicas'
 	var divMusicas = document.getElementById('musicas'),
 	// Cria um novo elemento do tipo 'div'
 	div = document.createElement("div"),
 	// Cria um novo elemento do tipo 'img'
 	img = document.createElement('img'),
-	// Cria o texto
+	// Cria um elemento texto
 	text = document.createTextNode(nome);
 	//Define os atributos da nova 'div'
 	div.setAttribute("style", "width:165px; height:auto; margin-top:15px; margin-left:10px; margin-right:10px; font-family: font; font-size:20px; text-align: center; overflow:hidden;");
 	//Define os atributos da nova 'img'
 	img.setAttribute("dragable", "true");
 	img.setAttribute("ondragstart", "drag(event)");
-	img.setAttribute("id", +j);
+	img.setAttribute("id", +id);
 	img.setAttribute("src", "imgs/file.png");
 	img.setAttribute("height", "50");
 	img.setAttribute("width", "50");
@@ -108,21 +156,22 @@ function addMusica(nome) {
 	// Depois junta a imagem e o texto á nova div
 	div.appendChild(img);
 	div.appendChild(text);
-	//Por fim insere a nova div dentro da div já existente chamada musicas
+	//insere a nova div dentro da div já existente chamada musicas
 	divMusicas.appendChild(div);
-
+	//cria a tag audio de acordo com o id da musica á qual foi feito o upload
+	//Recebendo o id directamente da base de dados.
 	var audio = document.createElement('audio');
-	audio.setAttribute("id", "som" + j);
+	audio.setAttribute("id", "som" + id);
 	audio.setAttribute("src", "uploads/" + nome + "");
 	//audio.setAttribute("type", "audio/mp3");
-	audio.setAttribute("onTimeUpdate", "updateTime('som" + j + "','tempo" + j + "')");
+	audio.setAttribute("onTimeUpdate", "updateTime('som" + id + "','tempo" + id + "')");
 
 	img.appendChild(audio);
-	j++;
 }
 
-function createSlides(id, seek, trim, volume) {
+function createSlides(id, seek, trim, volume, div) {
 	var som = document.getElementById(id);
+	var icon = document.getElementById(div);
 	var sliderSeek = $('#' + seek);
 	var sliderTrim = $('#' + trim);
 	var sliderVolume = $('#' + volume);
@@ -144,6 +193,11 @@ function createSlides(id, seek, trim, volume) {
 	som.addEventListener("timeupdate", function() {
 		var value = (1000 / som.duration) * som.currentTime;
 		sliderSeek.val(value);
+		if (som.ended) {
+			sliderSeek.val(0);
+			icon.setAttribute("style", "background-image:url(imgs/play.png);");
+		};
+
 	});
 
 	sliderTrim.noUiSlider({
@@ -229,6 +283,7 @@ function createDiv(track, texto, i) {
 	mute.setAttribute("onClick", "silencio('som" + i + "','mute" + i + "');");
 	boxContainer.setAttribute("class", "checkbox");
 	checkbox.setAttribute("type", "checkbox");
+	checkbox.setAttribute("name", "nome");
 	checkbox.setAttribute("id", "checkbox" + i);
 	label.setAttribute("for", "checkbox" + i);
 	remove.setAttribute("class", "remove");
@@ -260,5 +315,5 @@ function createDiv(track, texto, i) {
 	container.appendChild(containerUm);
 	container.appendChild(containerDois);
 	container.appendChild(containerTres);
-	createSlides('som' + i, 'seek' + i, 'trim' + i, 'volume' + i);
+	createSlides('som' + i, 'seek' + i, 'trim' + i, 'volume' + i, 'play' + i);
 }
