@@ -1,66 +1,253 @@
-@font-face
-{
-font-family: font;
-src:url(../font/font.TTF);
+@font-face {
+	font-family: font;
+	src: url(../font/font.TTF);
 }
 
-.body{
-background-color: #000000; /*background-image:url(../imgs/bg.jpg); */background-repeat:no-repeat; background-position:top center;
+.body {
+	background-color: #000000; /*background-image:url(../imgs/bg.jpg); */
+	background-repeat: no-repeat;
+	background-position: top center;
 }
-#logo{
-	width:800px;
- 	height:97px;
-	background:url(../imgs/logo.png);
+
+input[type="checkbox"] {
+	display: none;
+}
+
+#logo {
+	width: 800px;
+	height: 90px;
+	background: url(../imgs/mix.png);
 	margin: 0px auto;
 	margin-top: 150px;
 	position: relative;
 }
 
-#main{
+#main {
 	width: 1024px;
 	height: 7028px;
-	background:url(../imgs/background.png);
-	background-repeat:no-repeat;
-	background-color:#000;
+	background: url(../imgs/background.png);
+	background-repeat: no-repeat;
+	background-color: #000;
 	margin: 0px auto;
-	margin-top: 10px;
+	margin-top: 0px;
 	position: relative;
 }
-#esquerda {margin-left:49px; margin-top:49px; width: 185px; height: 5000px; float:left;}
-#direita {margin-right:49px; margin-top:49px; width: 729px; height: 5000px; float: right;}
+#esquerda {
+	margin-left: 49px;
+	margin-top: 49px;
+	width: 185px;
+	height: 5000px;
+	float: left;
+}
+#direita {
+	margin-right: 49px;
+	margin-top: 49px;
+	width: 729px;
+	height: 5000px;
+	float: right;
+}
 
-#musicas{width: 185px; height:844px; background-color:#FFF; margin-bottom:12px; margin-top: 12px;}
-#banner{ height: 80px; width: 729px;}
-#trackList{min-height: 844px; width: 729px; margin-top: 12px; height:auto;}
-#carregarFicheiros{width: 185px; height: 80px; background: url(../imgs/btnLoad.png) no-repeat;	background-size: 100% 100%; border: none;}
+#musicas {
+	width: 185px;
+	height: 844px;
+	background-color: #FFF;
+	margin-bottom: 12px;
+	margin-top: 12px;
+}
+#banner {
+	height: 80px;
+	width: 729px;
+}
+#trackList {
+	min-height: 844px;
+	width: 729px;
+	margin-top: 12px;
+	height: auto;
+}
+#carregarFicheiros {
+	width: 185px;
+	height: 80px;
+	background: url(../imgs/btnLoad.png) no-repeat;
+	background-size: 100% 100%;
+	border: none;
+}
 
-#carregarFicheiros:hover{opacity:0.85;}
+#carregarFicheiros:hover {
+	opacity: 0.85;
+}
 
-.audioContainer{background-image:url(../imgs/draghere.png);}
-.audioContainer, .containerUm , .containerTres, .containerDois{ height: 95px;}
-.containerUm , .containerTres, .containerDois{ float:left;}
-.containerTres{width: 175px;}
-.containerDois{width: 54px; margin-left:12px; margin-right:12px;}
-.containerUm, .titulo, .seekContainer, .trimContainer {width:476px;}
-.audioContainer{margin-bottom: 12px; width: 729px;}
-.titulo{height: 35px;}
-.seekContainer, .trimContainer{height: 30px;}
-.seek, .trim {height: 10px;}
-.nome, .tempoC{margin-top:10px; height:22px; float:left; font-family: font; font-size:20px;}
-.nome{margin-left: 12px; width: 310px; overflow:hidden; }
-.tempoC{width: 100px; margin-right:12px; }
-.mute{ height:45px; width: 80px; float:left; background-image:url(../imgs/muteOff.png); background-size: contain; background-position:center; background-repeat:no-repeat;}
-.boxContainer{float:left; width:20px; height: 45px; margin-left:10px; margin-right:10px;}
-.checkbox{margin: 0px; margin-top:12.5px; width:20px; height: 20px;}
-.remove{float:left; width: 45px; height:45px; background:url(../imgs/remove.png); background-size: contain;}
-.wrapper {width:434px; height:30px; float:left;}
-.seek {width: 410px; margin-left: 12px; margin-right:12px; margin-top:5px;}
-.trim {width: 410px; margin-left: 12px; margin-right:12px;}
-.loop{ margin-left:3px; margin-top:5px; width: 22px; height:30px; background:url(../imgs/loopOff.png); background-size: contain; float: left;}
-.play{ margin-left:5px; margin-top:10px; width: 20px; height:20px; background:url(../imgs/play.png); background-size: contain; float:left; }
-.stop{margin-left:5px; margin-top:5px; width: 20px; height:20px; background:url(../imgs/stop.png); background-size: contain; float: left;}
-.pause{width: 35px; height:35px; margin-top: 10px; margin-right:10px; background:url(../imgs/pause.png); background-size: contain; float: left;}
-.volumeMenos, .volumeMais{width: 25px; height:50px;  float: left; margin-left: 5px; margin-right: 5px;}
-.volumeMenos{background:url(../imgs/volumemenos.png); background-size: contain; background-repeat:no-repeat; background-position:center;}
-.volumeMais{ background:url(../imgs/volumemais.png); background-size: contain; background-repeat:no-repeat; background-position:center}
-.volume{width: 105px; height:30px;  float: left; margin-top: 20px};
+.audioContainer {
+	background-image: url(../imgs/draghere.png);
+}
+.audioContainer, .containerUm, .containerTres, .containerDois {
+	height: 95px;
+}
+.containerUm, .containerTres, .containerDois {
+	float: left;
+}
+.containerTres {
+	width: 175px;
+}
+.containerDois {
+	width: 54px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.containerUm, .titulo, .seekContainer, .trimContainer {
+	width: 476px;
+}
+.audioContainer {
+	margin-bottom: 12px;
+	width: 729px;
+}
+.titulo {
+	height: 35px;
+}
+.seekContainer, .trimContainer {
+	height: 30px;
+}
+.seek, .trim {
+	height: 10px;
+}
+.nome, .tempoC {
+	margin-top: 10px;
+	height: 22px;
+	float: left;
+	font-family: font;
+	font-size: 20px;
+}
+.nome {
+	margin-left: 12px;
+	width: 310px;
+	overflow: hidden;
+}
+.tempoC {
+	width: 100px;
+	margin-right: 12px;
+}
+.mute {
+	height: 45px;
+	width: 45px;
+	float: left;
+	background-image: url(../imgs/muteOff.png);
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+}
+.remove {
+	float: left;
+	width: 45px;
+	height: 45px;
+	background: url(../imgs/remove.png);
+	background-size: contain;
+	margin-right: 20px;
+}
+.wrapper {
+	width: 434px;
+	height: 30px;
+	float: left;
+}
+.seek {
+	width: 410px;
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-top: 5px;
+}
+.trim {
+	width: 410px;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+.loop {
+	margin-left: 3px;
+	margin-top: 5px;
+	width: 22px;
+	height: 30px;
+	background: url(../imgs/loopOff.png);
+	background-size: contain;
+	float: left;
+}
+.play {
+	margin-left: 5px;
+	margin-top: 10px;
+	width: 20px;
+	height: 20px;
+	background: url(../imgs/play.png);
+	background-size: contain;
+	float: left;
+}
+.stop {
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 20px;
+	height: 20px;
+	background: url(../imgs/stop.png);
+	background-size: contain;
+	float: left;
+}
+.pause {
+	width: 35px;
+	height: 35px;
+	margin-top: 10px;
+	margin-right: 10px;
+	background: url(../imgs/pause.png);
+	background-size: contain;
+	float: left;
+}
+.volumeMenos, .volumeMais {
+	width: 25px;
+	height: 50px;
+	float: left;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.volumeMenos {
+	background: url(../imgs/volumemenos.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.volumeMais {
+	background: url(../imgs/volumemais.png);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center
+}
+.volume {
+	width: 105px;
+	height: 30px;
+	float: left;
+	margin-top: 20px
+};
+
+input[type="checkbox"] {
+	display: none;
+}
+
+/* checkbox 3 */
+.checkbox {
+	margin: 9px;
+	float: left;
+}
+.checkbox label {
+	display: block;
+	cursor: pointer;
+}
+.checkbox label {
+	width: 27px;
+	height: 27px;
+	border: 2px solid #000000;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	-webkit-transition: 0.2s ease;
+	-moz-transition: 0.2s ease;
+	transition: 0.2s ease;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+.checkbox input[type="checkbox"]:checked ~
+label {
+	border: 8px solid #000000;
+}
