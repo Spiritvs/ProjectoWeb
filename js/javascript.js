@@ -27,9 +27,9 @@ $(document).ready(function() {
 		fileName : "myfile",
 		//showStatusAfterSuccess : false,
 		onSuccess : function(files, data, xhr) {
-			alert(data.status);
+			//alert(data.status);
 			if (data.status == true) {
-				alert(":) "+ data.data);
+				//alert(":) "+ data.data);
 				addMusica(files, data.data);
 			} else {
 				alert(":( " + data.data);
@@ -59,6 +59,58 @@ function drop(id, ev) {
 		track.removeChild(track.firstChild);
 	}
 	createDiv(id, texto, imagem);
+}
+
+function playAll(nome) {
+	var checkboxes = document.getElementsByName(nome);
+	var checkboxesChecked = [];
+	// loop todas as checkboxes
+	for (var i = 0; i < checkboxes.length; i++) {
+		if (checkboxes[i].checked) {
+			var id = checkboxes[i].id;
+			var som = id.replace("checkbox", "som");
+			var div = id.replace("checkbox", "play");
+			var musica = document.getElementById(som);
+			var icon = document.getElementById(div);
+			musica.play();
+			icon.setAttribute("style", "background-image:url(imgs/pause.png);");
+		}
+	}
+}
+
+function pauseAll(nome) {
+	var checkboxes = document.getElementsByName(nome);
+	var checkboxesChecked = [];
+	// loop todas as checkboxes
+	for (var i = 0; i < checkboxes.length; i++) {
+		if (checkboxes[i].checked) {
+			var id = checkboxes[i].id;
+			var som = id.replace("checkbox", "som");
+			var div = id.replace("checkbox", "play");
+			var musica = document.getElementById(som);
+			var icon = document.getElementById(div);
+			musica.pause();
+			icon.setAttribute("style", "background-image:url(imgs/play.png);");
+		}
+	}
+}
+
+function stopAll(nome) {
+	var checkboxes = document.getElementsByName(nome);
+	var checkboxesChecked = [];
+	// loop todas as checkboxes
+	for (var i = 0; i < checkboxes.length; i++) {
+		if (checkboxes[i].checked) {
+			var id = checkboxes[i].id;
+			var som = id.replace("checkbox", "som");
+			var div = id.replace("checkbox", "play");
+			var musica = document.getElementById(som);
+			var icon = document.getElementById(div);
+			musica.pause();
+			musica.currentTime = 0;
+			icon.setAttribute("style", "background-image:url(imgs/play.png);");
+		}
+	}
 }
 
 //Toca e pausa a musica, recebe o id da musica como parametro e o id da div para mudar o icon.
@@ -120,6 +172,7 @@ function updateTime(id, div) {
 	document.getElementById(div).innerHTML = currentMinutes + ":" + currentSeconds + ' / ' + Math.floor(musica.duration / 60) + ":" + (Math.floor(musica.duration % 60) < 10 ? '0' : '') + Math.floor(musica.duration % 60);
 
 }
+
 //Remove uma pista, acedendo ao parent Nod mais alto remove todos os childrens do mesmo até nada restar
 //No final insere uma nova imagem de fundo na div
 function removeAudio(div, id) {
@@ -194,7 +247,8 @@ function createSlides(id, seek, trim, volume, div) {
 		var value = (1000 / som.duration) * som.currentTime;
 		sliderSeek.val(value);
 		if (som.ended) {
-			sliderSeek.val(0);
+			musica.pause();
+			musica.currentTime = 0;
 			icon.setAttribute("style", "background-image:url(imgs/play.png);");
 		};
 
@@ -207,7 +261,6 @@ function createSlides(id, seek, trim, volume, div) {
 		connect : true,
 		behaviour : 'tap-drag'
 	});
-	//sliderTrim.noUiSlider.on("mousedown", function(){alert("draggin");});
 
 	sliderVolume.noUiSlider({
 		range : [0, 100],

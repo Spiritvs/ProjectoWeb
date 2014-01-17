@@ -7,15 +7,16 @@ src:url(../font/font.TTF);
 .ajax-file-upload-statusbar {
 	position:relative;
 	margin-top: 12px;
-	height: auto;
+	height: 95px;
 	width: 185px;
 	background:#FFF;
 	box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);
-
 }
+
 .ajax-file-upload-filename {
 	width: auto;
-	height: auto;
+	height: 3em;
+	line-height: 1em;
 	margin: 0 5px 5px 5px;
 	color: #000;
 	font-family: font;
@@ -87,8 +88,9 @@ opacity:0.85;
 }
 
 .ajax-upload-dragdrop {
-	border: 1px;
+	border: 0px;
 	width: 185px;
 	height: 80px; 
 	box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);
+	margin-bottom: 12px;
 }

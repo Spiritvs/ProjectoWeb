@@ -18,32 +18,33 @@ input[type="checkbox"] {
 	height: 90px;
 	background: url(../imgs/mix.png);
 	margin: 0px auto;
-	margin-top: 150px;
+	margin-top: 100px;
 	position: relative;
 }
 
 #main {
 	width: 1024px;
-	height: 7028px;
+	height: 985px;
 	background: url(../imgs/background.png);
 	background-repeat: no-repeat;
 	background-color: #000;
 	margin: 0px auto;
-	margin-top: 0px;
+	margin-bottom: 100px;
 	position: relative;
 }
 #esquerda {
 	margin-left: 49px;
 	margin-top: 49px;
 	width: 185px;
-	height: 5000px;
+	height: 936px;
 	float: left;
+	overflow: hidden;
 }
 #direita {
 	margin-right: 49px;
 	margin-top: 49px;
 	width: 729px;
-	height: 5000px;
+	height: 936px;
 	float: right;
 }
 
@@ -51,8 +52,6 @@ input[type="checkbox"] {
 	width: 185px;
 	height: 844px;
 	background-color: #FFF;
-	margin-bottom: 12px;
-	margin-top: 12px;
 	box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);
 }
 #master {
@@ -62,6 +61,12 @@ input[type="checkbox"] {
 	float:left;
 	box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);
 }
+
+
+#playG{height:40px; width:40px; float:left;background: url(../imgs/play.png); background-size:contain; margin-top:20px;}
+#pauseG{height:40px; width:40px; float:left;background: url(../imgs/pause.png); background-size:contain; margin-top:20px;}
+#stopG{height:40px; width:40px; float:left;background: url(../imgs/stop.png); background-size:contain; margin-top:20px;}
+
 #masterL {
 	background: url(../imgs/masterL.png) no-repeat;
 	background-size: 100% 100%;
@@ -71,10 +76,8 @@ input[type="checkbox"] {
 	box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);
 }
 #trackList {
-	min-height: 844px;
+	height: 856px;
 	width: 729px;
-	margin-top: 12px;
-	height: auto;
 	float:left;
 }
 #carregarFicheiros {
@@ -84,6 +87,7 @@ input[type="checkbox"] {
 	background-size: 100% 100%;
 	border: none;
 	box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);
+	margin-bottom: 12px;
 }
 
 #carregarFicheiros:hover {
@@ -92,7 +96,7 @@ input[type="checkbox"] {
 
 .audioContainer {
 	background-image: url(../imgs/draghere.png);
-	margin-bottom: 12px;
+	margin-top: 12px;
 	width: 729px;
 	height: 95px;
 	box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);
@@ -134,7 +138,7 @@ input[type="checkbox"] {
 .nome {
 	margin-left: 12px;
 	width: 310px;
-	overflow: hidden;
+	overflow:hidden;
 }
 .tempoC {
 	width: 100px;

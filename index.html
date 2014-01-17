@@ -10,7 +10,7 @@
 		<script type="text/javascript" src="js/jquery.uploadfile.min.js"></script>
 		<script type="text/javascript" src="js/javascript.js"></script>
 	</head>
-	<body class="body">
+	<body class="body" onload="teste()">
 		<!--audio id="som1" ontimeupdate="updateTime('som1', 'tempo1')" src="musicas/som1.mp3" type="audio/mp3"></audio-->
 		<div id="logo"></div>
 		<div id="main">
@@ -19,7 +19,11 @@
 				<div id="musicas"></div>
 			</div>
 			<div id="direita">
-				<div id="master"></div>
+				<div id="master">
+				<span id="playG" onclick="playAll('nome')"></span>
+				<span id="pauseG" onclick="pauseAll('nome')"></span>	
+				<span id="stopG" onclick="stopAll('nome')"></span>	
+				</div>
 				<div id="masterL"></div>
 				<div id="trackList">
 					<!--div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)">
@@ -76,24 +80,5 @@
 	//	$(function() {
 	//	});
 
-	function getCheckedBoxes(nome) {
-		var checkboxes = document.getElementsByName(nome);
-		var checkboxesChecked = [];
-		// loop over them all
-		for (var i = 0; i < checkboxes.length; i++) {
-			if (checkboxes[i].checked) {
-				var id = checkboxes[i].id;
-				var som = id.replace("checkbox", "som");
-				var div = id.replace("checkbox", "play");
-				playPause(som, div);
-			}
-			// And stick the checked ones onto an array...
-			//if (checkboxes[i].checked) {
-			// checkboxesChecked.push(checkboxes[i]);
-			// }
-		}
-		// Return the array if it is non-empty, or null
-		// return checkboxesChecked.length > 0 ? checkboxesChecked : null;
-	}
-
+	
 </script>
