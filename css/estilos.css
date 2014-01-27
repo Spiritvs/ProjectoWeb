@@ -4,9 +4,10 @@
 }
 
 .body {
-	background-color: #000000; /*background-image:url(../imgs/bg.jpg); */
+	background-image:url(../imgs/back6.jpg);
+	background-attachment:fixed;
 	background-repeat: no-repeat;
-	background-position: top center;
+	background-size: 100% 100%;
 }
 
 input[type="checkbox"] {
@@ -24,12 +25,14 @@ input[type="checkbox"] {
 
 #main {
 	width: 1024px;
-	height: 985px;
-	background: url(../imgs/background.png);
+	height: 1024px;
+	/*background: url(../imgs/background_.png);*/
 	background-repeat: no-repeat;
-	background-color: #000;
+	/*background-color: #000;*/
 	margin: 0px auto;
 	margin-bottom: 100px;
+	/*box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);*/
+	opacity: 0.9;
 	position: relative;
 }
 #esquerda {
@@ -101,6 +104,8 @@ input[type="checkbox"] {
 	height: 95px;
 	box-shadow: -4px 4px 5px 0px rgba(50, 50, 50, 0.7);
 }
+
+#audioC1{background-image: url(../imgs/fundo.png);}
 .containerUm, .containerTres, .containerDois {
 	height: 95px;
 }

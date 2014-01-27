@@ -1,21 +1,5 @@
 // JavaScript Document
 
-//var teste = document.getElementById('som1');
-//var end = 0;
-//
-//
-//teste.addEventListener('ontimeupdate', function(ev) {
-//  if (teste.currentTime > end) {
-//    teste.pause();
-//    }
-//},false);
-//
-//function playSpecial(){
-//    teste.currentTime = 0;
-//    end = 1;
-//    teste.play();
-//}
-
 var musica;
 var volumeAux = 0;
 
@@ -25,7 +9,7 @@ $(document).ready(function() {
 		dataType : "text",
 		allowedTypes : "mp3,wav,ogg",
 		fileName : "myfile",
-		//showStatusAfterSuccess : false,
+		showStatusAfterSuccess : false,
 		onSuccess : function(files, data, xhr) {
 			//alert(data.status);
 			if (data.status == true) {
@@ -211,15 +195,6 @@ function addMusica(nome, id) {
 	div.appendChild(text);
 	//insere a nova div dentro da div já existente chamada musicas
 	divMusicas.appendChild(div);
-	//cria a tag audio de acordo com o id da musica á qual foi feito o upload
-	//Recebendo o id directamente da base de dados.
-	var audio = document.createElement('audio');
-	audio.setAttribute("id", "som" + id);
-	audio.setAttribute("src", "uploads/" + nome + "");
-	//audio.setAttribute("type", "audio/mp3");
-	audio.setAttribute("onTimeUpdate", "updateTime('som" + id + "','tempo" + id + "')");
-
-	img.appendChild(audio);
 }
 
 function createSlides(id, seek, trim, volume, div) {
@@ -279,6 +254,15 @@ function createSlides(id, seek, trim, volume, div) {
 }
 
 function createDiv(track, texto, i) {
+	//cria a tag audio de acordo com o id da musica á qual foi feito o upload
+	//Recebendo o id directamente da base de dados.
+	var audio = document.createElement('audio');
+	audio.setAttribute("id", "som" + i);
+	audio.setAttribute("src", "uploads/" + texto + "");
+	//audio.setAttribute("type", "audio/mp3");
+	audio.setAttribute("onTimeUpdate", "updateTime('som" + i + "','tempo" + i + "')");
+	alert(i);
+	alert(texto);
 	container = document.getElementById(track);
 	while (container.firstChild) {
 		container.removeChild(container.firstChild);
@@ -330,6 +314,7 @@ function createDiv(track, texto, i) {
 	stop.setAttribute("class", "stop");
 	stop.setAttribute("onClick", "stopmusica('som" + i + "', 'play" + i + "');");
 	containerDois.setAttribute("class", "containerDois");
+	containerDois.setAttribute("id", "equalizer" + i);
 	containerTres.setAttribute("class", "containerTres");
 	mute.setAttribute("class", "mute");
 	mute.setAttribute("id", "mute" + i);
@@ -359,6 +344,7 @@ function createDiv(track, texto, i) {
 	containerUm.appendChild(trimContainer);
 	boxContainer.appendChild(checkbox);
 	boxContainer.appendChild(label);
+	containerDois.appendChild(audio);
 	containerTres.appendChild(mute);
 	containerTres.appendChild(boxContainer);
 	containerTres.appendChild(remove);
@@ -369,4 +355,5 @@ function createDiv(track, texto, i) {
 	container.appendChild(containerDois);
 	container.appendChild(containerTres);
 	createSlides('som' + i, 'seek' + i, 'trim' + i, 'volume' + i, 'play' + i);
+	equ('equalizer' + i);
 }
