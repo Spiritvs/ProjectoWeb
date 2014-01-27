@@ -4,7 +4,7 @@ class response {
 	public $data;
 	public function __construct() {
 		$this -> status = false;
-		$this -> data = "Classe não Instanciada";
+		$this -> data = "Classe nao Instanciada";
 	}
 
 }
@@ -16,7 +16,7 @@ if (isset($_FILES['myfile'])) {
 	// Make sure the file was sent without errors
 	if ($_FILES['myfile']['error'] == 0) {
 		// Connect to the database
-		$dbLink = new mysqli('127.0.0.1', 'root', 'root', 'mash');
+		$dbLink = new mysqli('localhost', 'root', 'root', 'mash');
 		if (mysqli_connect_errno()) {
 			die("MySQL connection failed: " . mysqli_connect_error());
 		}
