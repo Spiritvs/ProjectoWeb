@@ -246,6 +246,7 @@ function createSlides(id, seek, trim, volume, div) {
 	}).change(function() {
 		var volume = sliderVolume.val() / 100;
 		som.volume = volume;
+		
 	});
 
 	som.addEventListener("volumechange", function() {
