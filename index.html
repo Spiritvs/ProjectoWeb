@@ -16,7 +16,9 @@
 	</head>
 	<body class="body">
 		<audio id="som1" ontimeupdate="updateTime('som1', 'tempo1')" src="musicas/jenovaDrums.wav" type="audio/mp3"></audio>
-		<div id="logo"></div>
+		<div id="logo">
+
+		</div>
 		<div id="main">
 			<div id="esquerda">
 				<div id="carregarFicheiros"></div>
@@ -42,10 +44,8 @@
 								<div class="loop" id="loop1" onclick="repeat('som'+i, 'loop'+i);"></div>
 							</div>
 							<div class="seekContainer">
-								<div class="seek" id="seek1">
-								</div>
-								<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);">
-								</div>
+								<div class="seek" id="seek1"></div>
+								<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
 							</div>
 							<div class="trimContainer">
 								<div class="trim" id="trim1"></div>
