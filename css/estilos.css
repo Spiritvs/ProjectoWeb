@@ -162,11 +162,13 @@ input[type="checkbox"] {
 	width: 410px;
 	margin-left: 12px;
 	margin-right: 12px;
+	float: left;
 }
 .trim {
 	width: 410px;
 	margin-left: 12px;
 	margin-right: 12px;
+	float:left;
 }
 .nome, .tempoC {
 	margin-top: 10px;
@@ -214,6 +216,7 @@ input[type="checkbox"] {
 .play {
 	width: 20px;
 	height: 20px;
+	margin-right:17px;
 	background: url(../imgs/play.png);
 	background-size: contain;
 	float: right;
@@ -221,6 +224,7 @@ input[type="checkbox"] {
 .stop {
 	width: 20px;
 	height: 20px;
+	margin-right:17px;
 	background: url(../imgs/stop.png);
 	background-size: contain;
 	float: right;
