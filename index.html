@@ -15,9 +15,7 @@
 		<script type="text/javascript" src="js/javascript.js"></script>
 	</head>
 	<body class="body">
-		<audio id="som1" ontimeupdate="updateTime('som1', 'tempo1')" src="musicas/jenovaDrums.wav" type="audio/mp3"></audio>
 		<div id="logo">
-
 		</div>
 		<div id="main">
 			<div id="esquerda">
@@ -32,7 +30,7 @@
 				</div>
 				<div id="masterL"></div>
 				<div id="trackList">
-					<div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)">
+					<!--div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)">
 						<div class="containerUm">
 							<div class="titulo">
 								<div class="nome">
@@ -43,14 +41,12 @@
 								</div>
 								<div class="loop" id="loop1" onclick="repeat('som'+i, 'loop'+i);"></div>
 							</div>
-							<div class="seekContainer">
+							<div class="wrapper">
 								<div class="seek" id="seek1"></div>
-								<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
-							</div>
-							<div class="trimContainer">
 								<div class="trim" id="trim1"></div>
-								<div class="stop" onclick="stopmusica('som'+i, 'play'+i);"></div>
 							</div>
+								<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
+								<div class="stop" onclick="stopmusica('som'+i, 'play'+i);"></div>
 						</div>
 						<div class="containerDois">
 
@@ -62,12 +58,13 @@
 								<label for="checkbox1"></label>
 							</div>
 							<div class="remove" onclick="removeAudio(this,'som'+i);"></div>
+							<div class="lock"></div>
 							<div class="volumeMenos"></div>
 							<div class="volume" id="volume1"></div>
 							<div class="volumeMais"></div>
 						</div>
-					</div>
-					<!--div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)"></div-->
+					</div-->
+					<div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)"></div>
 					<div class="audioContainer" id="audioC2" ondrop="drop('audioC2',event)" ondragover="allowDrop(event)"></div>
 					<div class="audioContainer" id="audioC3" ondrop="drop('audioC3',event)" ondragover="allowDrop(event)"></div>
 					<div class="audioContainer" id="audioC4" ondrop="drop('audioC4',event)" ondragover="allowDrop(event)"></div>
@@ -80,81 +77,3 @@
 		</div>
 	</body>
 </html>
-
-<script>
-	var i = 1;
-	$(function() {
-		var som = document.getElementById('som1');
-		var icon = document.getElementById('play1');
-		var sliderSeek = $('#seek1');
-		var sliderTrim = $('#trim1');
-		var sliderVolume = $('#volume1');
-		var aux = sliderTrim.val();
-		aux[0] = som.duration * (aux[0] / 100);
-		aux[1] = som.duration * (aux[1] / 100);
-
-		sliderSeek.noUiSlider({
-			range : [0, 100],
-			start : 0,
-			handles : 1,
-			connect : false,
-			slide : function() {
-				som.pause();
-				icon.setAttribute("style", "background-image:url(imgs/play.png);");
-			}
-		}).change(function() {
-			//som.play();
-			//icon.setAttribute("style", "background-image:url(imgs/pause.png);");
-			var time = som.duration * (sliderSeek.val() / 100);
-			som.currentTime = time;
-			if (som.currentTime < aux[0]) {
-				som.currentTime = aux[0];
-			}
-		});
-
-		som.addEventListener("timeupdate", function() {
-			var value = (100 / som.duration) * som.currentTime;
-			sliderSeek.val(value);
-			if (som.loop == true) {
-				if (som.currentTime >= aux[1]) {
-					som.currentTime = aux[0];
-				};
-			} else {
-				if (som.currentTime >= aux[1] || som.ended) {
-					som.currentTime = aux[0];
-					som.pause();
-					icon.setAttribute("style", "background-image:url(imgs/play.png);");
-				};
-			};
-		});
-
-		sliderTrim.noUiSlider({
-			range : [0, 100],
-			start : [0, 100],
-			handles : 2,
-			connect : true,
-			behaviour : 'tap-drag'
-		}).change(function() {
-			aux = sliderTrim.val();
-			aux[0] = som.duration * (aux[0] / 100);
-			aux[1] = som.duration * (aux[1] / 100);
-			som.currentTime = aux[0];
-		});
-
-		sliderVolume.noUiSlider({
-			range : [0, 100],
-			start : 100,
-			handles : 1,
-			connect : "lower",
-			behaviour : 'tap'
-		}).change(function() {
-			var volume = sliderVolume.val() / 100;
-			som.volume = volume;
-		});
-
-		som.addEventListener("volumechange", function() {
-			sliderVolume.val(som.volume * 100);
-		});
-	});
-
-</script>

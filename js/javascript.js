@@ -1,4 +1,4 @@
-// JavaScript Document
+// JavaScript
 
 var musica;
 var volumeAux = 0;
@@ -37,7 +37,7 @@ function drop(id, ev) {
 	var track = document.getElementById(id);
 	var imagem = ev.dataTransfer.getData("Text");
 	var div = document.getElementById(imagem);
-	var parentDiv = div.parentNode;
+	var parentDiv = div.parentNode.parentNode;
 	var texto = parentDiv.textContent;
 	while (track.firstChild) {
 		track.removeChild(track.firstChild);
@@ -167,7 +167,7 @@ function removeAudio(div, id) {
 	while (parentDiv.firstChild) {
 		parentDiv.removeChild(parentDiv.firstChild);
 	}
-	parentDiv.setAttribute("style", "background-image:url(imgs/draghere.png);");
+	parentDiv.setAttribute("style", "background-image:url(imgs/draghere.png); box-shadow: -5px 5px 5px 0px rgba(50, 50, 50, 0.7);");
 }
 
 //Adiciona a musica á lista depois de ter ido feito o upload
@@ -179,103 +179,147 @@ function addMusica(nome, id) {
 	// Cria um novo elemento do tipo 'img'
 	img = document.createElement('img'),
 	// Cria um elemento texto
-	text = document.createTextNode(nome);
-	//Define os atributos da nova 'div'
-	div.setAttribute("style", "width:165px; height:auto; margin-top:15px; margin-left:10px; margin-right:10px; font-family: font; font-size:20px; text-align: center; overflow:hidden;");
-	//Define os atributos da nova 'img'
+	text = document.createTextNode(nome),
+	// Cria o botão remove
+	rmv = document.createElement('img'),
+	//Div onde vai o texto
+	divTxt = document.createElement("div"),
+	cbtns = document.createElement("div");
+	//Define os atributos das novas 'div'
+	div.setAttribute("style", "width:165px; height:auto; margin-top:15px; margin-left:10px; margin-right:10px; cursor: pointer;");
+	cbtns.setAttribute("style", "width:165px; height:50px;");
+	divTxt.setAttribute("style", "width:165px; height:auto;font-family: font; font-size:20px; text-align: center; overflow:hidden;");
+	//Define os atributos das novas 'img'
 	img.setAttribute("dragable", "true");
 	img.setAttribute("ondragstart", "drag(event)");
 	img.setAttribute("id", +id);
 	img.setAttribute("src", "imgs/file.png");
 	img.setAttribute("height", "50");
 	img.setAttribute("width", "50");
-	img.setAttribute("style", "margin-left:58px;  display: block;");
-	// Depois junta a imagem e o texto á nova div
-	div.appendChild(img);
-	div.appendChild(text);
+	img.setAttribute("style", "margin-left: 50px; display: block; float:left;");
+	
+	rmv.setAttribute("src", "imgs/remove.png");
+	rmv.setAttribute("height", "20");
+	rmv.setAttribute("width", "20");
+	rmv.setAttribute("style", "margin-right:15px; margin-top:15px; float:right; cursor: pointer;");
+	rmv.setAttribute("onclick","rmvMusica(this)");
+	
+		
+	// Depois junta a imagem e o texto á nova div e o audio é imagem.
+	cbtns.appendChild(img);
+	cbtns.appendChild(rmv);
+	divTxt.appendChild(text);
+	div.appendChild(cbtns);
+	div.appendChild(divTxt);
 	//insere a nova div dentro da div já existente chamada musicas
 	divMusicas.appendChild(div);
 }
 
+function rmvMusica(id){
+var parentDiv = id.parentNode;
+	while (parentDiv.firstChild) {
+		parentDiv.removeChild(parentDiv.firstChild);
+	}
+};
+
 function createSlides(id, seek, trim, volume, div) {
-	var som = document.getElementById(id);
-	var icon = document.getElementById(div);
-	var sliderSeek = $('#' + seek);
-	var sliderTrim = $('#' + trim);
-	var sliderVolume = $('#' + volume);
+	
+		var som = document.getElementById(id);
+		var icon = document.getElementById(div);
+		var sliderSeek = $('#'+seek);
+		var sliderTrim = $('#'+trim);
+		var sliderVolume = $('#'+volume);
+		var aux = sliderTrim.val();
+		aux[0] = som.duration * (aux[0] / 100);
+		aux[1] = som.duration * (aux[1] / 100);
 
-	sliderSeek.noUiSlider({
-		range : [0, 1000],
-		start : 0,
-		handles : 1,
-		connect : false,
-		slide : function() {
-			som.pause();
-		}
-	}).change(function() {
-		som.play();
-		var time = som.duration * (sliderSeek.val() / 1000);
-		som.currentTime = time;
-	});
+		sliderSeek.noUiSlider({
+			range : [0, 100],
+			start : 0,
+			handles : 1,
+			connect : false,
+			slide : function() {
+				som.pause();
+				icon.setAttribute("style", "background-image:url(imgs/play.png);");
+			}
+		}).change(function() {
+			som.play();
+			icon.setAttribute("style", "background-image:url(imgs/pause.png);");
+			var time = som.duration * (sliderSeek.val() / 100);
+			som.currentTime = time;
+			if (som.currentTime < aux[0]) {
+				som.currentTime = aux[0];
+			}
+		});
 
-	som.addEventListener("timeupdate", function() {
-		var value = (1000 / som.duration) * som.currentTime;
-		sliderSeek.val(value);
-		if (som.ended) {
-			musica.pause();
-			musica.currentTime = 0;
-			icon.setAttribute("style", "background-image:url(imgs/play.png);");
-		};
+		som.addEventListener("timeupdate", function() {
+			var value = (100 / som.duration) * som.currentTime;
+			sliderSeek.val(value);
+			if (som.loop == true) {
+				if (som.currentTime >= aux[1]) {
+					som.currentTime = aux[0];
+				};
+			} else {
+				if (som.currentTime >= aux[1] || som.ended) {
+					som.currentTime = aux[0];
+					som.pause();
+					icon.setAttribute("style", "background-image:url(imgs/play.png);");
+				};
+			};
+		});
 
-	});
+		sliderTrim.noUiSlider({
+			range : [0, 100],
+			start : [0, 100],
+			handles : 2,
+			connect : true,
+			behaviour : 'tap-drag'
+		}).change(function() {
+			aux = sliderTrim.val();
+			aux[0] = som.duration * (aux[0] / 100);
+			aux[1] = som.duration * (aux[1] / 100);
+			som.currentTime = aux[0];
+		});
 
-	sliderTrim.noUiSlider({
-		range : [0, 100],
-		start : [0, 100],
-		handles : 2,
-		connect : true,
-		behaviour : 'tap-drag'
-	});
+		sliderVolume.noUiSlider({
+			range : [0, 100],
+			start : 100,
+			handles : 1,
+			connect : "lower",
+			behaviour : 'tap'
+		}).change(function() {
+			var volume = sliderVolume.val() / 100;
+			som.volume = volume;
+		});
 
-	sliderVolume.noUiSlider({
-		range : [0, 100],
-		start : 100,
-		handles : 1,
-		connect : "lower",
-		behaviour : 'tap'
-	}).change(function() {
-		var volume = sliderVolume.val() / 100;
-		som.volume = volume;
-});
-
-	som.addEventListener("volumechange", function() {
-		sliderVolume.val(som.volume * 100);
-	});
+		som.addEventListener("volumechange", function() {
+			sliderVolume.val(som.volume * 100);
+		});
 }
 
 function createDiv(track, texto, i) {
+	//Limpa
+	container = document.getElementById(track);
+	while (container.firstChild) {
+		container.removeChild(container.firstChild);
+	}
 	//cria a tag audio de acordo com o id da musica á qual foi feito o upload
 	//Recebendo o id directamente da base de dados.
 	var audio = document.createElement('audio');
 	audio.setAttribute("id", "som" + i);
 	audio.setAttribute("src", "uploads/" + texto + "");
 	audio.setAttribute("onTimeUpdate", "updateTime('som" + i + "','tempo" + i + "')");
-	container = document.getElementById(track);
-	while (container.firstChild) {
-		container.removeChild(container.firstChild);
-	}
-	container.setAttribute("style", "background-image:url(imgs/fundo.png);");
+	//Cria o Html Todo
+	container.setAttribute("style", "background-image:url(imgs/fundo.png); box-shadow: none;");
 	containerUm = document.createElement('div');
 	titulo = document.createElement('div');
 	nome = document.createElement('div');
 	tempoC = document.createElement('div');
 	loop = document.createElement('div');
-	seekContainer = document.createElement('div');
 	wrapper = document.createElement('div');
 	seek = document.createElement('div');
-	play = document.createElement('div');
-	trimContainer = document.createElement('div');
 	trim = document.createElement('div');
+	play = document.createElement('div');
 	stop = document.createElement('div');
 	containerDois = document.createElement('div');
 	containerTres = document.createElement('div');
@@ -284,6 +328,7 @@ function createDiv(track, texto, i) {
 	checkbox = document.createElement('input');
 	label = document.createElement('label');
 	remove = document.createElement('div');
+	lock = document.createElement('div');
 	volumeMenos = document.createElement('div');
 	volumeMais = document.createElement('div');
 	volume = document.createElement('div');
@@ -298,7 +343,6 @@ function createDiv(track, texto, i) {
 	loop.setAttribute("class", "loop");
 	loop.setAttribute("id", "loop" + i);
 	loop.setAttribute("onClick", "repeat('som" + i + "','loop" + i + "');");
-	seekContainer.setAttribute("class", "seekContainer");
 	wrapper.setAttribute("class", "wrapper");
 	seek.setAttribute("class", "seek");
 	seek.setAttribute("id", "seek" + i);
@@ -307,7 +351,6 @@ function createDiv(track, texto, i) {
 	play.setAttribute("class", "play");
 	play.setAttribute("id", "play" + i);
 	play.setAttribute("onClick", "playPause('som" + i + "', 'play" + i + "');");
-	trimContainer.setAttribute("class", "trimContainer");
 	stop.setAttribute("class", "stop");
 	stop.setAttribute("onClick", "stopmusica('som" + i + "', 'play" + i + "');");
 	containerDois.setAttribute("class", "containerDois");
@@ -323,28 +366,28 @@ function createDiv(track, texto, i) {
 	label.setAttribute("for", "checkbox" + i);
 	remove.setAttribute("class", "remove");
 	remove.setAttribute("onClick", "removeAudio(this,'som" + i + "');");
+	lock.setAttribute("class","lock");
 	volumeMenos.setAttribute("class", "volumeMenos");
 	volumeMais.setAttribute("class", "volumeMais");
 	volume.setAttribute("class", "volume");
 	volume.setAttribute("id", "volume" + i);
-
+	
 	titulo.appendChild(nome);
 	titulo.appendChild(tempoC);
 	titulo.appendChild(loop);
 	wrapper.appendChild(seek);
 	wrapper.appendChild(trim);
-	seekContainer.appendChild(wrapper);
-	seekContainer.appendChild(play);
-	trimContainer.appendChild(stop);
 	containerUm.appendChild(titulo);
-	containerUm.appendChild(seekContainer);
-	containerUm.appendChild(trimContainer);
+	containerUm.appendChild(wrapper);
+	containerUm.appendChild(play);
+	containerUm.appendChild(stop);
 	boxContainer.appendChild(checkbox);
 	boxContainer.appendChild(label);
 	containerDois.appendChild(audio);
 	containerTres.appendChild(mute);
 	containerTres.appendChild(boxContainer);
 	containerTres.appendChild(remove);
+	containerTres.appendChild(lock);
 	containerTres.appendChild(volumeMenos);
 	containerTres.appendChild(volume);
 	containerTres.appendChild(volumeMais);
