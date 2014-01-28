@@ -42,17 +42,19 @@
 								<div class="loop" id="loop1" onclick="repeat('som'+i, 'loop'+i);"></div>
 							</div>
 							<div class="seekContainer">
-								<div class="wrapper">
-									<div class="seek" id="seek1"></div>
-									<div class="trim" id="trim1"></div>
+								<div class="seek" id="seek1">
 								</div>
-								<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
+								<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);">
+								</div>
 							</div>
 							<div class="trimContainer">
+								<div class="trim" id="trim1"></div>
 								<div class="stop" onclick="stopmusica('som'+i, 'play'+i);"></div>
 							</div>
 						</div>
-						<div class="containerDois" ></div>
+						<div class="containerDois">
+
+						</div>
 						<div class="containerTres">
 							<div class="mute" id="mute1" onclick="silencio('som'+i,'mute'+i);"></div>
 							<div class="checkbox">
@@ -87,7 +89,7 @@
 		var sliderSeek = $('#seek1');
 		var sliderTrim = $('#trim1');
 		var sliderVolume = $('#volume1');
-		var aux = [0, 100];
+		var aux = sliderTrim.val();
 		aux[0] = som.duration * (aux[0] / 100);
 		aux[1] = som.duration * (aux[1] / 100);
 
@@ -98,12 +100,16 @@
 			connect : false,
 			slide : function() {
 				som.pause();
+				icon.setAttribute("style", "background-image:url(imgs/play.png);");
 			}
 		}).change(function() {
-			som.play();
+			//som.play();
+			//icon.setAttribute("style", "background-image:url(imgs/pause.png);");
 			var time = som.duration * (sliderSeek.val() / 100);
 			som.currentTime = time;
-			if(som.currentTime < aux[0]){som.currentTime = aux[0];}
+			if (som.currentTime < aux[0]) {
+				som.currentTime = aux[0];
+			}
 		});
 
 		som.addEventListener("timeupdate", function() {
@@ -113,8 +119,7 @@
 				if (som.currentTime >= aux[1]) {
 					som.currentTime = aux[0];
 				};
-			} 
-			else {
+			} else {
 				if (som.currentTime >= aux[1] || som.ended) {
 					som.currentTime = aux[0];
 					som.pause();
@@ -122,21 +127,6 @@
 				};
 			};
 		});
-
-		//var end = 0;
-		//
-		//
-		//teste.addEventListener('ontimeupdate', function(ev) {
-		//  if (teste.currentTime > end) {
-		//    teste.pause();
-		//    }
-		//},false);
-		//
-		//function playSpecial(){
-		//    teste.currentTime = 0;
-		//    end = 1;
-		//    teste.play();
-		//}
 
 		sliderTrim.noUiSlider({
 			range : [0, 100],

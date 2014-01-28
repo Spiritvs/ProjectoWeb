@@ -40,12 +40,12 @@
     
     
 
-    var n_bars = 2;
+    var n_bars = 1;
     var n_components_per_bar = 8;
     
-    var bar_margin = 5;
+    var bar_margin = 9;
     
-    var bar_component_margin = 2; 
+    var bar_component_margin = 1; 
     
     var frequency = 2;  // the frequency of the equalizer, don't set a value above 20 or you'll consume a high CPU
     var refresh_time = 80;  // the refresh time for the equalizer
@@ -56,9 +56,8 @@
     
         
 
-function equ(id) {
+function equ(id, aux) {
 	
-	alert(id);
 	var equalizer = $("#"+id);
 	
 	// ______________________ do not change this values, change the setting above instead _____________________
@@ -76,18 +75,16 @@ function equ(id) {
 	
 	for(var i=0;i<n_bars;i++)
 	{
-	    equalizer.append("<div class='equalizer_bar'></div>");
+	    equalizer.append("<div class='equalizer_bar' id='teste"+aux+"'></div>");
 	    
 	}
-	
-	
 	var i = 0;
 	
-	$(".equalizer_bar").each(function(index) {
+	$("#teste"+aux).each(function(index) {
 	    
 	  for( var j=0;j<n_components_per_bar;j++)
 	  {
-		  $(this).append("<div class='equalizer_bar_component' id='bar_"+i+"_component_"+j+"'></div>");
+		  $(this).append("<div class='equalizer_bar_component' id='bar_"+aux+"_component_"+j+"'></div>");
 	  }
 	  
 	  $(".equalizer_bar_component",this).reverseOrder();
@@ -113,10 +110,10 @@ function equ(id) {
            for( var j=0;j<n_components_per_bar;j++)
            {   
                if(color_degrading_mode == "single")         
-               $("#bar_"+i+"_component_"+j).css("backgroundColor","rgb("+(base_color_red + color_degrading_degree*(n_components_per_bar - j))+","+(base_color_green + color_degrading_degree*(n_components_per_bar - j))+","+(base_color_blue + color_degrading_degree*(n_components_per_bar - j))+")");
+               $("#bar_"+aux+"_component_"+j).css("backgroundColor","rgb("+(base_color_red + color_degrading_degree*(n_components_per_bar - j))+","+(base_color_green + color_degrading_degree*(n_components_per_bar - j))+","+(base_color_blue + color_degrading_degree*(n_components_per_bar - j))+")");
                else
                {
-                   $("#bar_"+i+"_component_"+j).css("backgroundColor",
+                   $("#bar_"+aux+"_component_"+j).css("backgroundColor",
                    "rgb("+Math.floor(first_color_red + red_degrading_degree*(n_components_per_bar - j))+","
                    +Math.floor(first_color_green + green_degrading_degree*(n_components_per_bar - j))+","
                    +Math.floor(first_color_blue + blue_degrading_degree*(n_components_per_bar - j))+")");
@@ -137,13 +134,13 @@ function equ(id) {
 	
 	function activate_equalizer()
 	{
-	    if(music == true && $("#"+id+ "audio").get(0).paused == false)
+	    if(music == true && $("#"+id+" audio").get(0).paused == false)
 	    {
 	        var i = Math.floor((Math.random()*n_bars)); 
 	        var j = Math.floor((Math.random()*n_components_per_bar)+1); 
 	    
 	        for(var k=j;k<n_components_per_bar;k++)
-	        $("#bar_"+i+"_component_"+k).css("backgroundColor","transparent");
+	        $("#bar_"+aux+"_component_"+k).css("backgroundColor","transparent");
 	    }
 	    else
 	    {
@@ -153,7 +150,7 @@ function equ(id) {
                 var j = Math.floor((Math.random()*n_components_per_bar)+1); 
         
                 for(var k=j;k<n_components_per_bar;k++)
-                $("#bar_"+i+"_component_"+k).css("backgroundColor","transparent");
+                $("#bar_"+aux+"_component_"+k).css("backgroundColor","transparent");
 	        }
 	    }
 	}

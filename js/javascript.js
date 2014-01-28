@@ -259,10 +259,7 @@ function createDiv(track, texto, i) {
 	var audio = document.createElement('audio');
 	audio.setAttribute("id", "som" + i);
 	audio.setAttribute("src", "uploads/" + texto + "");
-	//audio.setAttribute("type", "audio/mp3");
 	audio.setAttribute("onTimeUpdate", "updateTime('som" + i + "','tempo" + i + "')");
-	alert(i);
-	alert(texto);
 	container = document.getElementById(track);
 	while (container.firstChild) {
 		container.removeChild(container.firstChild);
@@ -314,7 +311,7 @@ function createDiv(track, texto, i) {
 	stop.setAttribute("class", "stop");
 	stop.setAttribute("onClick", "stopmusica('som" + i + "', 'play" + i + "');");
 	containerDois.setAttribute("class", "containerDois");
-	containerDois.setAttribute("id", "equalizer" + i);
+	containerDois.setAttribute("id", "equalizer"+i);
 	containerTres.setAttribute("class", "containerTres");
 	mute.setAttribute("class", "mute");
 	mute.setAttribute("id", "mute" + i);
@@ -355,5 +352,5 @@ function createDiv(track, texto, i) {
 	container.appendChild(containerDois);
 	container.appendChild(containerTres);
 	createSlides('som' + i, 'seek' + i, 'trim' + i, 'volume' + i, 'play' + i);
-	equ('equalizer' + i);
+	equ('equalizer'+i, i);
 }
