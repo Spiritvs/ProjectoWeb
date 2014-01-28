@@ -75,12 +75,12 @@ function equ(id, aux) {
 	
 	for(var i=0;i<n_bars;i++)
 	{
-	    equalizer.append("<div class='equalizer_bar' id='teste"+aux+"'></div>");
+	    equalizer.append("<div class='equalizer_bar' id='equ"+aux+"'></div>");
 	    
 	}
 	var i = 0;
 	
-	$("#teste"+aux).each(function(index) {
+	$("#equ"+aux).each(function(index) {
 	    
 	  for( var j=0;j<n_components_per_bar;j++)
 	  {
