@@ -229,9 +229,9 @@ function createSlides(id, seek, trim, volume, div) {
 		var sliderSeek = $('#'+seek);
 		var sliderTrim = $('#'+trim);
 		var sliderVolume = $('#'+volume);
-		var aux = sliderTrim.val();
-		aux[0] = som.duration * (aux[0] / 100);
-		aux[1] = som.duration * (aux[1] / 100);
+		var aux = [];
+		aux[0] = 0;
+		aux[1] = som.duration;
 
 		sliderSeek.noUiSlider({
 			range : [0, 100],
