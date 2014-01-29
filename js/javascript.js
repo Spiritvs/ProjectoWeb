@@ -216,7 +216,7 @@ function addMusica(nome, id) {
 }
 
 function rmvMusica(id){
-var parentDiv = id.parentNode;
+var parentDiv = id.parentNode.parentNode;
 	while (parentDiv.firstChild) {
 		parentDiv.removeChild(parentDiv.firstChild);
 	}
