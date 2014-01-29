@@ -189,6 +189,7 @@ function addMusica(nome, id) {
 	div.setAttribute("style", "width:165px; height:auto; margin-top:15px; margin-left:10px; margin-right:10px; cursor: pointer;");
 	cbtns.setAttribute("style", "width:165px; height:50px;");
 	divTxt.setAttribute("style", "width:165px; height:auto;font-family: font; font-size:20px; text-align: center; overflow:hidden;");
+	divTxt.setAttribute("onclick","mudaNome(this)");
 	//Define os atributos das novas 'img'
 	img.setAttribute("dragable", "true");
 	img.setAttribute("ondragstart", "drag(event)");
@@ -214,6 +215,11 @@ function addMusica(nome, id) {
 	//insere a nova div dentro da div já existente chamada musicas
 	divMusicas.appendChild(div);
 }
+
+function mudaNome(id){
+	var nome = prompt("Novo nome?");
+	id.innerHTML=nome;
+};
 
 function rmvMusica(id){
 var parentDiv = id.parentNode.parentNode;
@@ -302,6 +308,9 @@ function createDiv(track, texto, i) {
 	container = document.getElementById(track);
 	while (container.firstChild) {
 		container.removeChild(container.firstChild);
+	}
+	while(document.getElementById('som'+i)!=null){
+		i++;
 	}
 	//cria a tag audio de acordo com o id da musica á qual foi feito o upload
 	//Recebendo o id directamente da base de dados.
