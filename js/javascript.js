@@ -189,7 +189,7 @@ function addMusica(nome, id) {
 	div.setAttribute("style", "width:165px; height:auto; margin-top:15px; margin-left:10px; margin-right:10px; cursor: pointer;");
 	cbtns.setAttribute("style", "width:165px; height:50px;");
 	divTxt.setAttribute("style", "width:165px; height:auto;font-family: font; font-size:20px; text-align: center; overflow:hidden;");
-	divTxt.setAttribute("onclick","mudaNome(this)");
+	//divTxt.setAttribute("onclick","mudaNome(this)");
 	//Define os atributos das novas 'img'
 	img.setAttribute("dragable", "true");
 	img.setAttribute("ondragstart", "drag(event)");
@@ -216,6 +216,7 @@ function addMusica(nome, id) {
 	divMusicas.appendChild(div);
 }
 
+//Muda o nome da musica, n implementado
 function mudaNome(id){
 	var nome = prompt("Novo nome?");
 	id.innerHTML=nome;

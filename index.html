@@ -3,20 +3,18 @@
 	<title>Mix Dj Titanium</title>
 	<head>
 		<link href="css/estilos.css" rel="stylesheet" type="text/css" />
-		<link href="css/jquery.nouislider.css" rel="stylesheet" type="text/css" >
-		<link href="css/uploadfile.css" rel="stylesheet" type="text/css" >
-		<link rel="stylesheet" href="css/jquery.equalizer.css" />
-		<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script type="text/javascript" src="js/jquery.reverseorder.js"></script>
-		<script type="text/javascript" src="js/jquery.equalizer.js"></script>
-		<script type="text/javascript" src="js/jquery.nouislider.js"></script>
-		<script type="text/javascript" src="js/jquery.uploadfile.min.js"></script>
+		<link href="jquery/jquery.nouislider.css" rel="stylesheet" type="text/css" >
+		<link href="jquery/uploadfile.css" rel="stylesheet" type="text/css" >
+		<link href="jquery/jquery.equalizer.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="jquery/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="jquery/jquery.reverseorder.js"></script>
+		<script type="text/javascript" src="jquery/jquery.equalizer.js"></script>
+		<script type="text/javascript" src="jquery/jquery.nouislider.js"></script>
+		<script type="text/javascript" src="jquery/jquery.uploadfile.min.js"></script>
 		<script type="text/javascript" src="js/javascript.js"></script>
 	</head>
 	<body class="body">
-		<div id="logo">
-		</div>
+		<div id="logo"></div>
 		<div id="main">
 			<div id="esquerda">
 				<div id="carregarFicheiros"></div>
@@ -31,38 +29,38 @@
 				<div id="masterL"></div>
 				<div id="trackList">
 					<!--div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)">
-						<div class="containerUm">
-							<div class="titulo">
-								<div class="nome">
-									Musica 1.mp3
-								</div>
-								<div class="tempoC" id="tempo1">
-									0:00/0:00
-								</div>
-								<div class="loop" id="loop1" onclick="repeat('som'+i, 'loop'+i);"></div>
-							</div>
-							<div class="wrapper">
-								<div class="seek" id="seek1"></div>
-								<div class="trim" id="trim1"></div>
-							</div>
-								<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
-								<div class="stop" onclick="stopmusica('som'+i, 'play'+i);"></div>
-						</div>
-						<div class="containerDois">
+					<div class="containerUm">
+					<div class="titulo">
+					<div class="nome">
+					Musica 1.mp3
+					</div>
+					<div class="tempoC" id="tempo1">
+					0:00/0:00
+					</div>
+					<div class="loop" id="loop1" onclick="repeat('som'+i, 'loop'+i);"></div>
+					</div>
+					<div class="wrapper">
+					<div class="seek" id="seek1"></div>
+					<div class="trim" id="trim1"></div>
+					</div>
+					<div class="play" id="play1" onclick="playPause('som'+i, 'play'+i);"></div>
+					<div class="stop" onclick="stopmusica('som'+i, 'play'+i);"></div>
+					</div>
+					<div class="containerDois">
 
-						</div>
-						<div class="containerTres">
-							<div class="mute" id="mute1" onclick="silencio('som'+i,'mute'+i);"></div>
-							<div class="checkbox">
-								<input type="checkbox" id="checkbox1">
-								<label for="checkbox1"></label>
-							</div>
-							<div class="remove" onclick="removeAudio(this,'som'+i);"></div>
-							<div class="lock"></div>
-							<div class="volumeMenos"></div>
-							<div class="volume" id="volume1"></div>
-							<div class="volumeMais"></div>
-						</div>
+					</div>
+					<div class="containerTres">
+					<div class="mute" id="mute1" onclick="silencio('som'+i,'mute'+i);"></div>
+					<div class="checkbox">
+					<input type="checkbox" id="checkbox1">
+					<label for="checkbox1"></label>
+					</div>
+					<div class="remove" onclick="removeAudio(this,'som'+i);"></div>
+					<div class="lock"></div>
+					<div class="volumeMenos"></div>
+					<div class="volume" id="volume1"></div>
+					<div class="volumeMais"></div>
+					</div>
 					</div-->
 					<div class="audioContainer" id="audioC1" ondrop="drop('audioC1',event)" ondragover="allowDrop(event)"></div>
 					<div class="audioContainer" id="audioC2" ondrop="drop('audioC2',event)" ondragover="allowDrop(event)"></div>
